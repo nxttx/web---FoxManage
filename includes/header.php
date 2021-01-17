@@ -3,12 +3,12 @@ $_HEADER= null;
 
 if(isset($_SESSION['user'])){
     $_HEADER = '
-<nav class="navbar" role="navigation" aria-label="main navigation">
+<nav class="navbar has-background-light" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item" href="https://bulma.io">
-      <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+      <img src="images/logo.png" width="112" height="28">
     </a>
-
+<!--https://bulma.io/images/bulma-logo.png -->
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -18,12 +18,12 @@ if(isset($_SESSION['user'])){
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item">
+      <a class="navbar-item" href="/">
         Home
       </a>
 
-      <a class="navbar-item">
-        Documentation
+      <a class="navbar-item" href="https://mail.axc.nl/" target="_blank">
+        Email
       </a>
 
       <div class="navbar-item has-dropdown is-hoverable">
@@ -51,10 +51,16 @@ if(isset($_SESSION['user'])){
 
     <div class="navbar-end">
       <div class="navbar-item">
+        <div class="buttons">
+          <button class="button is-primary" onclick="logOut()">
+            <strong>Logout</strong>
+          </button>
+        </div>
       </div>
     </div>
   </div>
 </nav>
+        
     ';
 }else{
     $_HEADER = '

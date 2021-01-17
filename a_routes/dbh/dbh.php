@@ -1,14 +1,14 @@
 <?php
-function connectToDatabase()
-{
-    $upload = true;
+session_start();
+function connectToDatabase(){
+    $upload = false;
     if ($upload) {
         include_once("passwords.php");
     } else {
         $servername = "localhost";
         $username = "root";
         $password = "";
-        $dbname = "pjp";
+        $dbname = "reseller";
     }
 
     try {

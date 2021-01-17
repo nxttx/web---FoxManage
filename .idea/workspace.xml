@@ -15,6 +15,7 @@
       <list>
         <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -27,6 +28,8 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -38,7 +41,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1610884286070</updated>
-      <workItem from="1610884287273" duration="5093000" />
+      <workItem from="1610884287273" duration="22970000" />
     </task>
     <servers />
   </component>
@@ -50,17 +53,29 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="361" y="76" key="#Deployment/0.0.1536.834@0.0.1536.834" timestamp="1610885279016" />
-    <state x="604" y="341" key="NewPhpFileDialog" timestamp="1610889193349">
+    <state x="538" y="219" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1610895045369">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="604" y="341" key="NewPhpFileDialog/0.0.1536.834@0.0.1536.834" timestamp="1610889193349" />
+    <state x="538" y="219" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.834@0.0.1536.834" timestamp="1610895045369" />
+    <state x="604" y="341" key="NewPhpFileDialog" timestamp="1610914164602">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="604" y="341" key="NewPhpFileDialog/0.0.1536.834@0.0.1536.834" timestamp="1610914164602" />
     <state x="277" y="62" key="SettingsEditor" timestamp="1610887416143">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="277" y="62" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1610887416143" />
-    <state x="425" y="189" key="run.anything.popup" timestamp="1610886786947">
+    <state x="478" y="150" width="579" height="534" key="find.popup" timestamp="1610912803228">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="425" y="189" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1610886786947" />
+    <state x="478" y="150" width="579" height="534" key="find.popup/0.0.1536.834@0.0.1536.834" timestamp="1610912803228" />
+    <state x="425" y="189" key="run.anything.popup" timestamp="1610895264650">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="425" y="189" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1610895264650" />
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1610917648173">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1610917648173" />
   </component>
 </project>

@@ -7,12 +7,14 @@ if(isset($_SESSION['user'])){
     $_FOOTER = '';
 }
 
-$_FOOTER = '
+?>
+
+<?php
+echo($_FOOTER);
+echo('
     <script src="js/script.js"></script>
     </body>
 </html>
-';
-
+');
 ?>
 
-<?php echo($_FOOTER) ?>

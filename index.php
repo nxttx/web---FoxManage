@@ -1,10 +1,14 @@
 <?php
 include_once("globals/global.php");
+
 $body = null;
 
 if(isset($_SESSION['user'])){
     $_SITE_TITLE = $_SITE_GLOBAL_COMPANY;
-    $body = '';
+    $body = _MAIN_BODY('
+    HELLOOO
+    
+    ');
 }else{
     $_SITE_TITLE= $_SITE_GLOBAL_COMPANY.'Admin Area - Login';
     $body = '
@@ -18,7 +22,7 @@ if(isset($_SESSION['user'])){
                     <hr class="login-hr">
                     <p class="subtitle has-text-white">Login to your manager</p>
                     <div class="box">
-                        <div class="title has-text-grey is-5">Please enter your email and password.</div>
+                        <div class="title has-text-grey is-5" id="infoBox">Please enter your email and password.</div>
 
                         <div class="field">
                             <label class="label has-text-left" for="username">Username</label>
@@ -34,7 +38,7 @@ if(isset($_SESSION['user'])){
                                        type="password">
                             </div>
                         </div>
-                        <button class="button is-block is-danger is-fullwidth" onclick="login()">Login</button>
+                        <button id="LoginButton" class="button is-block is-primary is-fullwidth" onclick="logIn()">Login</button>
                     </div>
                     <p class="has-text-grey">
                         <a href="">Sign Up</a> &nbsp;·&nbsp;
@@ -50,8 +54,8 @@ if(isset($_SESSION['user'])){
     ';
 }
 
-include_once("inlcudes/head.php");
-include_once("inlcudes/header.php");
+include_once("includes/head.php");
+include_once("includes/header.php");
 echo($body);
-include_once("inlcudes/footer.php");
+include_once("includes/footer.php");
 ?>

@@ -15,6 +15,7 @@ $_HEAD = '
         <meta charset="UTF-8">
         <title>' . $_SITE_TITLE . '</title>
         <link rel="stylesheet" href="css/bulma.css">
+        <link rel="stylesheet" href="css/ccss.css">
     </head>
     <body>
 
