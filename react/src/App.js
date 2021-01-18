@@ -5,7 +5,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      IP: "http://127.0.0.1/a_routes/",
+      IP: "http://localhost/a_routes/",
       currentScreen: "login",
     }
   }

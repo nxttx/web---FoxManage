@@ -23,10 +23,10 @@ function Login(props) {
       try {
         let request = await fetch(props.IP + "login.php", {
           method: 'POST', // *GET, POST, PUT, DELETE, etc.
-          mode: 'no-cors',
+          mode: 'cors',
           // cache: 'no-cache',
           // credentials: 'same-origin',
-          headers: { 
+          headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
           // redirect: 'follow',
