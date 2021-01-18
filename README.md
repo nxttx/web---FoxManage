@@ -3,7 +3,7 @@
   FoxManage
   <br>
 </h1>
-
+A custom reseller environment for foxels
 
 ## Authors
 * **R. Boudewijn** - [nxttx](https://github.com/nxttx)
