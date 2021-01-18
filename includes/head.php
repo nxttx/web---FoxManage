@@ -14,8 +14,10 @@ $_HEAD = '
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
         <title>' . $_SITE_TITLE . '</title>
-        <link rel="stylesheet" href="css/bulma.css">
-        <link rel="stylesheet" href="css/ccss.css">
+        <link rel="stylesheet" href="css/bulma.css"> <!-- bulma-->
+        <link rel="stylesheet" href="css/ccss.css"><!-- custom-->
+        <script src="https://kit.fontawesome.com/ae33e372bf.js" crossorigin="anonymous"></script> <!-- fontAwesom-->
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> <!-- Google Charts-->
     </head>
     <body>
 

@@ -6,7 +6,18 @@ $body = null;
 if(isset($_SESSION['user'])){
     $_SITE_TITLE = $_SITE_GLOBAL_COMPANY;
     $body = _MAIN_BODY('
-    HELLOOO
+    <h1 class="title">Dashboard</h1>
+    <h2 class="subtitle">Subtitle</h2>
+    
+    <div class="columns">
+        <div class="column">
+            
+        </div>
+        <div class="column is-5-desktop ">
+            <div id="piechart" ></div>
+        </div>
+    </div>
+
     
     ');
 }else{
@@ -23,22 +34,29 @@ if(isset($_SESSION['user'])){
                     <p class="subtitle has-text-white">Login to your manager</p>
                     <div class="box">
                         <div class="title has-text-grey is-5" id="infoBox">Please enter your email and password.</div>
-
-                        <div class="field">
-                            <label class="label has-text-left" for="username">Username</label>
-                            <div class="control">
-                                <input autofocus="" class="input" id="username" placeholder="Username"
-                                       type="text">
+                        <form onsubmit="logIn(event)">
+                            <div class="field">
+                                <label class="label has-text-left" for="username">Username</label>
+                                <div class="control has-icons-left">
+                                    <input autofocus="" class="input" id="username" placeholder="Username"
+                                           type="text">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="field">
-                            <label class="label has-text-left" for="password">Password</label>
-                            <div class="control">
-                                <input class="input" id="password" placeholder="Password"
-                                       type="password">
+                            <div class="field">
+                                <label class="label has-text-left" for="password">Password</label>
+                                <div class="control has-icons-left">
+                                    <input class="input" id="password" placeholder="Password"
+                                           type="password">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-lock"></i>
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-                        <button id="LoginButton" class="button is-block is-primary is-fullwidth" onclick="logIn()">Login</button>
+                        <button id="LoginButton" class="button is-block is-primary is-fullwidth">Login</button>
+                        </form>
                     </div>
                     <p class="has-text-grey">
                         <a href="">Sign Up</a> &nbsp;·&nbsp;
@@ -53,7 +71,7 @@ if(isset($_SESSION['user'])){
 </div>
     ';
 }
-
+//var_dump($_SESSION);
 include_once("includes/head.php");
 include_once("includes/header.php");
 echo($body);

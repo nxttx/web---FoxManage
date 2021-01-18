@@ -1,7 +1,8 @@
 /*
 GLOBAL VARS:
  */
-const IP = "http://localhost/a_routes/";
+const IP = "http://localhost/a_routes/"; //test local
+// const IP = "http://192.168.2.12/a_routes/"; //test for mobile
 
 /*
 GLOBAL EVENT LISTENERS
@@ -23,7 +24,9 @@ FUNCTIONS
  *  @params None
  *  @return None
  */
-async function logIn() {
+async function logIn(e) {
+    console.log(e)
+    e.preventDefault()
     const USERNAME = document.getElementById("username").value;
     const PASSWORD = document.getElementById("password").value;
     let loginbutton = document.getElementById("LoginButton");
@@ -108,24 +111,59 @@ async function getUsedData() {
         }
     );
     if (request.status === 200) {
-        // let x = await request.text();
-        // console.log(x)
         let response = await request.json();
         document.getElementById("usedDataText").innerText = response.usedDirSize + " / " + response.maxDirSize + " MB";
         document.getElementById("usedDataSlider").max = response.maxDirSize;
         document.getElementById("usedDataSlider").value = response.usedDirSize;
+
         let percentage = response.usedDirSize / response.maxDirSize * 100;
         if (percentage > 90) {
             document.getElementById("usedDataSlider").className = "progress is-danger";
+
         } else if (percentage > 75) {
             document.getElementById("usedDataSlider").className = "progress is-warning";
         }
+
+        if(window.location.pathname === "/index.php" || window.location.pathname === "/"){
+            loadChart(response);
+        }
+
+    }else if(request.status === 401){
+        //nothing user is not logged on so...
     } else {
-        // let x = await request.text();
-        // console.log(x)
         document.getElementById("usedDataSlider").value = 100;
         document.getElementById("usedDataSlider").className = "progress";
         document.getElementById("usedDataText").innerText = "Request error.";
     }
 }
+/**
+ *  This functions builds the chart in dashboard.
+ *  @author Robert Boudewijn
+ *  @date 2020-01-18
+ *  @async
+ *  @params {Object} {usedDirSize, maxDirSize, folderUsedDirSize}
+ *  @return None
+ */
+async function loadChart(response){
+    google.charts.load("current", {"packages":["corechart"]});
+    google.charts.setOnLoadCallback(drawChart);
 
+    function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+            ["Type", "amount"],
+            ["Database", response.usedDirSize - response.folderUsedDirSize ],
+            ["storage", response.folderUsedDirSize],
+            ["free", response.maxDirSize - response.usedDirSize]
+        ]);
+
+        var options = {
+            title: "Storage",
+            sliceVisibilityThreshold: .00000001, //this makes sure that all slices are visible
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById("piechart"));
+
+        chart.draw(data, options);
+    }
+}

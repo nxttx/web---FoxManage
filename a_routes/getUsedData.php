@@ -1,7 +1,9 @@
 <?php
 /*
- * Checks the used capacity of the user.
- * @return {Object}
+ *  Checks the used capacity of the user.
+ *  @author Robert Boudewijn
+ *  @date 2020-01-17
+ *  @return {Object}
  */
 include_once("dbh/dbh.php");
 $dbh = connectToDatabase();
@@ -44,7 +46,7 @@ if (isset($_SESSION['user'])) {
         }
         // make bytes in to mb
         $usedDirSize = round($usedDirSize / 1048576, 2);
-
+        $folderUsedDirSize =$usedDirSize;
         //get all databases
         $sth = $dbh->prepare("SELECT databaseName from userdatabases where user = :id");
         $sth->bindParam(':id', $_SESSION['id']);
@@ -63,7 +65,7 @@ if (isset($_SESSION['user'])) {
         }
 
 
-        $return = array("maxDirSize" => (float)$maxDirSize, "usedDirSize" => $usedDirSize);
+        $return = array("maxDirSize" => (float)$maxDirSize, "usedDirSize" => $usedDirSize, "folderUsedDirSize" => $folderUsedDirSize);
         echo(json_encode($return));
         http_response_code(200); //OK
     } catch (exception $e) {
@@ -71,5 +73,5 @@ if (isset($_SESSION['user'])) {
         echo($e);
     }
 } else {
-    http_response_code(400); //Bad Request
+    http_response_code(401); //not authenticated
 }

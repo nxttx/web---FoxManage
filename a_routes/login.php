@@ -26,7 +26,7 @@ if (isset($_POST['username'])) {
             if ($password === $serverPassword) {
                 $_SESSION['user'] = $username;
                 $_SESSION['id'] = $serverId;
-                if($serverAdminRights === 1){
+                if($serverAdminRights === '1'){
                     $_SESSION['adminRights'] = true;
                 }else{
                     $_SESSION['adminRights'] = false;
