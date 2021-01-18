@@ -5,13 +5,33 @@ $body = null;
 
 if(isset($_SESSION['user'])){
     $_SITE_TITLE = $_SITE_GLOBAL_COMPANY;
+
+
+
+
+
     $body = _MAIN_BODY('
     <h1 class="title">Dashboard</h1>
-    <h2 class="subtitle">Subtitle</h2>
+    
     
     <div class="columns">
         <div class="column">
-            
+            <h2 class="subtitle">Domains:</h2>
+            <div class="content">
+                <ul id="domains">
+                    <li>Domain 1</li>
+                    <li>Domain 2</li>
+                    <li>Domain 3</li>
+                </ul>
+            </div>
+            <h2 class="subtitle">Databases:</h2>
+            <div class="content">  
+                <ul id="databases">
+                    <li>Database 1</li>
+                    <li>Database 2</li>
+                    <li>Database 3</li>
+                </ul>
+            </div>      
         </div>
         <div class="column is-5-desktop ">
             <div id="piechart" ></div>

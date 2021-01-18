@@ -3,20 +3,10 @@
  *  Checks the used capacity of the user.
  *  @author Robert Boudewijn
  *  @date 2020-01-17
- *  @return {Object}
+ *  @return {Object} {usedDirSize, maxDirSize, folderUsedDirSize}
  */
 include_once("dbh/dbh.php");
 $dbh = connectToDatabase();
-function folderSize($dir)
-{
-    $size = 0;
-
-    foreach (glob(rtrim($dir, '/') . '/*', GLOB_NOSORT) as $each) {
-        $size += is_file($each) ? filesize($each) : folderSize($each);
-    }
-
-    return $size;
-}
 
 if (isset($_SESSION['user'])) {
     try {
@@ -69,7 +59,7 @@ if (isset($_SESSION['user'])) {
         echo(json_encode($return));
         http_response_code(200); //OK
     } catch (exception $e) {
-        http_response_code(500); //Bad Request
+        http_response_code(500); //Server error
         echo($e);
     }
 } else {

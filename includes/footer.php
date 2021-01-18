@@ -6,9 +6,10 @@ if(isset($_SESSION['user'])){
 <footer class="footer has-background-light">
   <div class="content has-text-centered">
     <p>
-      <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
-      <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
-      is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+      <strong>FoxManage</strong> by <a href="https://robertboudewijn.nl">Robert Boudewijn</a>. The source code is licensed
+      <a href="https://opensource.org/licenses/BSD-2-Clause">BSD</a>. The website content
+      is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.<br>
+      Copyright 2021 Robert Boudewijn
     </p>
   </div>
 </footer>';

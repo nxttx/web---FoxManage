@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SITE_GLOBAL_COMPANY = "Foxels";
+$_SITE_GLOBAL_COMPANY = "FoxManage";
 include_once("includes/aside.php");
 
 /*

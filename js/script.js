@@ -9,6 +9,10 @@ GLOBAL EVENT LISTENERS
  */
 window.addEventListener('load', (event) => {
     getUsedData();
+    if (window.location.pathname === "/index.php" || window.location.pathname === "/") {
+        getDomains();
+        getDatabases();
+    }
 });
 
 
@@ -124,11 +128,11 @@ async function getUsedData() {
             document.getElementById("usedDataSlider").className = "progress is-warning";
         }
 
-        if(window.location.pathname === "/index.php" || window.location.pathname === "/"){
+        if (window.location.pathname === "/index.php" || window.location.pathname === "/") {
             loadChart(response);
         }
 
-    }else if(request.status === 401){
+    } else if (request.status === 401) {
         //nothing user is not logged on so...
     } else {
         document.getElementById("usedDataSlider").value = 100;
@@ -136,6 +140,7 @@ async function getUsedData() {
         document.getElementById("usedDataText").innerText = "Request error.";
     }
 }
+
 /**
  *  This functions builds the chart in dashboard.
  *  @author Robert Boudewijn
@@ -144,26 +149,104 @@ async function getUsedData() {
  *  @params {Object} {usedDirSize, maxDirSize, folderUsedDirSize}
  *  @return None
  */
-async function loadChart(response){
-    google.charts.load("current", {"packages":["corechart"]});
+async function loadChart(response) {
+    google.charts.load("current", {"packages": ["corechart"]});
     google.charts.setOnLoadCallback(drawChart);
 
     function drawChart() {
 
-        var data = google.visualization.arrayToDataTable([
+        let data = google.visualization.arrayToDataTable([
             ["Type", "amount"],
-            ["Database", response.usedDirSize - response.folderUsedDirSize ],
+            ["Database", response.usedDirSize - response.folderUsedDirSize],
             ["storage", response.folderUsedDirSize],
             ["free", response.maxDirSize - response.usedDirSize]
         ]);
 
-        var options = {
+        let options = {
             title: "Storage",
             sliceVisibilityThreshold: .00000001, //this makes sure that all slices are visible
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById("piechart"));
+        let chart = new google.visualization.PieChart(document.getElementById("piechart"));
 
         chart.draw(data, options);
+    }
+}
+
+/**
+ *  This function gets all domains of the current user.
+ *  @author Robert Boudewijn
+ *  @date 2020-01-18
+ *  @async
+ *  @params None
+ *  @return None
+ */
+async function getDomains() {
+    let request = await fetch(IP + "getUserDomains.php",
+        {
+            method: 'GET', // *GET, POST, PUT, DELETE, etc.
+            // mode: 'cors',
+            // cache: 'no-cache',
+            // credentials: 'same-origin',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer'
+        }
+    );
+    if (request.status === 200) {
+        let response = await request.json();
+
+        let list = "";
+        //handle data
+        response.forEach(domain => {
+            list += '<li>' + domain + '</li>';
+        })
+
+        document.getElementById("domains").innerHTML =list;
+
+
+    } else if (request.status === 401) {
+        //nothing user is not logged on so...
+    } else {
+        //error
+    }
+}
+
+/**
+ *  This function gets all domains of the current user.
+ *  @author Robert Boudewijn
+ *  @date 2020-01-18
+ *  @async
+ *  @params None
+ *  @return None
+ */
+async function getDatabases() {
+    let request = await fetch(IP + "getUserDatabases.php",
+        {
+            method: 'GET', // *GET, POST, PUT, DELETE, etc.
+            // mode: 'cors',
+            // cache: 'no-cache',
+            // credentials: 'same-origin',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer'
+        }
+    );
+    if (request.status === 200) {
+        let response = await request.json();
+        console.log(response);
+        let list = "";
+        //handle data
+        response.forEach(database => {
+            list += '<li>' + database + '</li>';
+        })
+
+        document.getElementById("databases").innerHTML =list;
+
+
+    } else if (request.status === 401) {
+        //nothing user is not logged on so...
+    } else {
+        //error
     }
 }
