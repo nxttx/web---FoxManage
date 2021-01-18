@@ -24,6 +24,7 @@ if (isset($_POST['username'])) {
                 $serverAdminRights = $row['adminRights'];
             }
             if ($password === $serverPassword) {
+                echo($username);
                 $_SESSION['user'] = $username;
                 $_SESSION['id'] = $serverId;
                 if($serverAdminRights === '1'){
