@@ -42,8 +42,27 @@ if (isset($_SESSION['user'])) {
                 echo 'can not create object';
             }
         }
-
+        // make bytes in to mb
         $usedDirSize = round($usedDirSize / 1048576, 2);
+
+        //get all databases
+        $sth = $dbh->prepare("SELECT databaseName from userdatabases where user = :id");
+        $sth->bindParam(':id', $_SESSION['id']);
+        $sth->execute();
+        foreach ($sth->fetchAll(PDO::FETCH_ASSOC) as $row) {
+            $sth2 = $dbh->prepare('SELECT table_schema,
+                                                    ROUND(SUM(data_length + index_length) / 1024 / 1024, 1) "SizeInMB" 
+                                            FROM information_schema.tables 
+                                            WHERE table_schema = :databaseName
+                                            GROUP BY table_schema');
+            $sth2->bindParam(':databaseName', $row["databaseName"]);
+            $sth2->execute();
+            foreach ($sth2->fetchAll(PDO::FETCH_ASSOC) as $row2) {
+                $usedDirSize += $row2['SizeInMB'];
+            }
+        }
+
+
         $return = array("maxDirSize" => (float)$maxDirSize, "usedDirSize" => $usedDirSize);
         echo(json_encode($return));
         http_response_code(200); //OK

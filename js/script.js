@@ -108,8 +108,9 @@ async function getUsedData() {
         }
     );
     if (request.status === 200) {
+        // let x = await request.text();
+        // console.log(x)
         let response = await request.json();
-        console.log(typeof response)
         document.getElementById("usedDataText").innerText = response.usedDirSize + " / " + response.maxDirSize + " MB";
         document.getElementById("usedDataSlider").max = response.maxDirSize;
         document.getElementById("usedDataSlider").value = response.usedDirSize;
@@ -120,8 +121,8 @@ async function getUsedData() {
             document.getElementById("usedDataSlider").className = "progress is-warning";
         }
     } else {
-        let x = await request.text();
-        console.log(x)
+        // let x = await request.text();
+        // console.log(x)
         document.getElementById("usedDataSlider").value = 100;
         document.getElementById("usedDataSlider").className = "progress";
         document.getElementById("usedDataText").innerText = "Request error.";
