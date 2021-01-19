@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'; // 
+import React, { useState, useEffect } from 'react';
 import Chart from "react-google-charts";
 
 function Dashboard(props) {
@@ -113,10 +113,10 @@ function Dashboard(props) {
                 chartType="PieChart"
                 loader={<div>Loading Chart</div>}
                 data={[
-                    ["Type", "amount"],
+                    ["Type", "Amount"],
                     ["Database", usedData.usedDirSize - usedData.folderUsedDirSize],
-                    ["storage", usedData.folderUsedDirSize],
-                    ["free", usedData.maxDirSize - usedData.usedDirSize]
+                    ["Storage", usedData.folderUsedDirSize],
+                    ["Free", usedData.maxDirSize - usedData.usedDirSize]
                 ]}
                 options={{
                     title: 'Storage',

@@ -83,9 +83,10 @@ function Aside(props) {
                 <li><Link to="/">Dashboard</Link></li>
                 <li><Link to="/Domains">Domains</Link></li>
                 <li><Link to="/Databases">Databases</Link></li>
+                <li><Link to="/Mailboxes">MailBoxes</Link></li>
             </ul>
             <p className="menu-label">
-                Data
+                Data usage:
             </p>
             {dataSlider()}
             <p id="usedDataText">{usedDataText}</p>
