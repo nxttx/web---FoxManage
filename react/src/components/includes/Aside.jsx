@@ -1,4 +1,6 @@
-import React, { useState } from 'react'; //useEffect 
+import React, { useState, useEffect } from 'react'; // 
+// eslint-disable-next-line
+import { BrowserRouter as  Router, Switch, Route, Link } from "react-router-dom";
 
 function Aside(props) {
     const [usedDataText, setUsedDataText] = useState("Loading...");
@@ -7,12 +9,8 @@ function Aside(props) {
     const [usedDataSliderClass, setUsedDataSliderClass] = useState("progress is-primary");
 
 
-    useState(()=>{
-        getUsedData()
-    },[props.IP])
-
-
-    /**
+    useEffect(()=>{
+        /**
      *  This functions gets the used data of the user.
      *  @author Robert Boudewijn
      *  @date 2020-01-17
@@ -45,11 +43,6 @@ function Aside(props) {
             } else if (percentage > 75) {
                 setUsedDataSliderClass("progress is-warning");
             }
-            //todo: think about this:
-
-            // if (window.location.pathname === "/index.php" || window.location.pathname === "/") {
-            //     loadChart(response);
-            // }
 
         } else if (request.status === 401) {
             //nothing user is not logged on so...
@@ -59,6 +52,11 @@ function Aside(props) {
             setUsedDataText("Request error.");
         }
     }
+        getUsedData();
+    },[props.IP]);
+
+
+    
 
     /**
      *  Returns the correct progress component
@@ -82,9 +80,9 @@ function Aside(props) {
                 General
             </p>
             <ul className="menu-list">
-                <li><a href="/">Dashboard</a></li>
-                <li><a href="/">Domains</a></li>
-                <li><a href="/">Databases</a></li>
+                <li><Link to="/">Dashboard</Link></li>
+                <li><Link to="/Domains">Domains</Link></li>
+                <li><Link to="/Databases">Databases</Link></li>
             </ul>
             <p className="menu-label">
                 Data

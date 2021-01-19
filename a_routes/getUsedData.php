@@ -35,8 +35,8 @@ if (isset($_SESSION['user'])) {
             }
         }
         // make bytes in to mb
-        $usedDirSize = round($usedDirSize / 1048576, 2);
-        $folderUsedDirSize =$usedDirSize;
+        $usedDirSize =$usedDirSize / 1048576;
+        $folderUsedDirSize = round($usedDirSize, 2);
         //get all databases
         $sth = $dbh->prepare("SELECT databaseName from userdatabases where user = :id");
         $sth->bindParam(':id', $_SESSION['id']);
@@ -54,7 +54,7 @@ if (isset($_SESSION['user'])) {
             }
         }
 
-
+        $usedDirSize = round($usedDirSize, 2);
         $return = array("maxDirSize" => (float)$maxDirSize, "usedDirSize" => $usedDirSize, "folderUsedDirSize" => $folderUsedDirSize);
         echo(json_encode($return));
         http_response_code(200); //OK

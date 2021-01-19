@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; //useEffect
+import React, { useState, useEffect } from 'react'; //
 
 function Login(props) {
   const [username, setUsername] = useState("");
@@ -7,6 +7,38 @@ function Login(props) {
   const [infoBox, setInfoBox] = useState("Please enter your email and password.");
   const [infoBoxClassName, setInfoBoxClassName] = useState("title has-text-grey is-5");
   const [passwordClassName, setPasswordClassName] = useState("input");
+
+  useEffect(() => {
+    /**
+       *  checks if the user is allready logged on.
+       *  @author Robert Boudewijn
+       *  @date 2020-01-19
+       *  @async
+       *  @params None
+       *  @return None
+       */
+    async function getLoggedInState() {
+      let request = await fetch(props.IP + "CheckIfLoggedin.php",
+        {
+          method: 'GET', // *GET, POST, PUT, DELETE, etc.
+          // mode: 'cors',
+          // cache: 'no-cache',
+          // credentials: 'same-origin',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          redirect: 'follow',
+          referrerPolicy: 'no-referrer'
+        }
+      );
+      if (request.status === 200) {
+        props.setCurrentScreen("index");
+      } else if (request.status === 401) {
+        //nothing user is not logged on so...
+      }
+    }
+    getLoggedInState();
+  }, [props]);
+
+
 
   function handleUsernameChange(e) {
     setUsername(e.target.value);

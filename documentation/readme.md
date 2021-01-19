@@ -8,3 +8,7 @@
 * Webserver with PDO.
 * MySql database.
 * The getUsedData.php uses php component [COM]. So for now only Windows systems.
+    ``` 
+    [PHP_COM_DOTNET]
+    extension=php_com_dotnet.dll
+    ```

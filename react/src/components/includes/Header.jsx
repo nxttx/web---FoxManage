@@ -1,32 +1,34 @@
 import React, { } from 'react'; //useEffect useState
+// eslint-disable-next-line
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function Header(props) {
-/**
- *  This function logges the current user out.
- *  @author Robert Boudewijn
- *  @date 2020-01-17
- *  @async
- *  @params None
- *  @return None
- */
-async function logOut() {
-  let request = await fetch(props.IP + "logout.php",
+  /**
+   *  This function logges the current user out.
+   *  @author Robert Boudewijn
+   *  @date 2020-01-17
+   *  @async
+   *  @params None
+   *  @return None
+   */
+  async function logOut() {
+    let request = await fetch(props.IP + "logout.php",
       {
-          method: 'GET', // *GET, POST, PUT, DELETE, etc.
-          // mode: 'cors',
-          // cache: 'no-cache',
-          // credentials: 'same-origin',
-          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-          redirect: 'follow',
-          referrerPolicy: 'no-referrer'
+        method: 'GET', // *GET, POST, PUT, DELETE, etc.
+        // mode: 'cors',
+        // cache: 'no-cache',
+        // credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer'
       }
-  );
-  if (request.status === 200) {
-    props.setCurrentScreen("login");
-  } else {
+    );
+    if (request.status === 200) {
+      props.setCurrentScreen("login");
+    } else {
       alert("Something went wrong. Try again later.")
+    }
   }
-}
 
   return (
     <nav className="navbar has-background-light" role="navigation" aria-label="main navigation">
@@ -43,37 +45,37 @@ async function logOut() {
       </div>
       <div id="navbarBasicExample" className="navbar-menu">
         <div className="navbar-start">
-          <a className="navbar-item" href="/">
+          <Link className="navbar-item" to="/">
             Home
-      </a>
+          </Link>
           <a className="navbar-item" href="https://mail.axc.nl/" target="_blank" rel="noreferrer">
             Email
-      </a>
+          </a>
           <div className="navbar-item has-dropdown is-hoverable">
             <a href="/" className="navbar-link">
               More
-        </a>
+            </a>
             <div className="navbar-dropdown">
               <a href="/" className="navbar-item">
                 About
-          </a>
+              </a>
               <a href="/" className="navbar-item">
                 Jobs
-          </a>
+              </a>
               <a href="/" className="navbar-item">
                 Contact
-          </a>
+              </a>
               <hr className="navbar-divider" />
               <a href="/" className="navbar-item">
                 Report an issue
-          </a>
+              </a>
             </div>
           </div>
         </div>
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="buttons">
-              <button className="button is-primary" onClick={()=>logOut()}>
+              <button className="button is-primary" onClick={() => logOut()}>
                 <strong>Logout</strong>
               </button>
             </div>
