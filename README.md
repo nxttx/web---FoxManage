@@ -5,6 +5,12 @@
 </h1>
 A custom reseller environment for foxels
 
+## table of contents
+1. [Authors](#authors)
+2. [Software Guidebook](#software-guidebook)
+3. [Languages](#languages)
+4. [Frameworks](#frameworks)
+
 ## Authors
 * **R. Boudewijn** - [nxttx](https://github.com/nxttx)
 
@@ -43,7 +49,7 @@ A custom reseller environment for foxels
     </li>
 </ul>
 
-## frameworks
+## Frameworks
 * [React](https://reactjs.org/) 
 * [Bulma](https://bulma.io/)
 
