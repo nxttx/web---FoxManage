@@ -1,6 +1,10 @@
 <?php
+
 header("Access-Control-Allow-Origin: *");
 session_start();
+$_SESSION['user'] = 'RobertBoudewijn';
+$_SESSION['id'] = 1 ;
+$_SESSION['adminRights'] = true;
 function connectToDatabase(){
     $upload = false;
     if ($upload) {

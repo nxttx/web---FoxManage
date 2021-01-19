@@ -24,19 +24,16 @@ function Login(props) {
         let request = await fetch(props.IP + "login.php", {
           method: 'POST', // *GET, POST, PUT, DELETE, etc.
           mode: 'cors',
-          // cache: 'no-cache',
-          // credentials: 'same-origin',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
-          // redirect: 'follow',
-          // referrerPolicy: 'no-referrer',
           body: "username=" + username + "&password=" + password,
         }
         );
         console.log(request)
         if (request.status === 200) {
           setloginbutton("button is-block is-success is-fullwidth");
+          props.setCurrentScreen("index");
         } else if (request.status === 500) {
           setInfoBox("There was an error.");
           setloginbutton("button is-block is-primary is-fullwidth");
