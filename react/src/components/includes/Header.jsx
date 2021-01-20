@@ -2,14 +2,20 @@ import React, { } from 'react'; //useEffect useState
 // eslint-disable-next-line
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
+/**
+ * Makes the header and returns it.
+ *
+ * @author Robert Boudewijn
+ * @date 2021/01/20
+ * @param {*} props
+ * @return {JSX} JSX
+ */
 function Header(props) {
   /**
    *  This function logges the current user out.
    *  @author Robert Boudewijn
    *  @date 2020-01-17
    *  @async
-   *  @params None
-   *  @return None
    */
   async function logOut() {
     let request = await fetch(props.IP + "logout.php",

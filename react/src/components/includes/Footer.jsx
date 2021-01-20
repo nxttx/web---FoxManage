@@ -1,5 +1,13 @@
-import React, { } from 'react'; //useEffect useState
+import React from 'react';
 
+/**
+ * Build the footer
+ *
+ * @author Robert Boudewijn
+ * @date 2021/01/20
+ * @param {*} props
+ * @return {JSX} JSX 
+ */
 function Footer(props) {
 
   return (

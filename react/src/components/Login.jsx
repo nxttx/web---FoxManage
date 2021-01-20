@@ -1,5 +1,13 @@
-import React, { useState, useEffect } from 'react'; //
+import React, { useState, useEffect } from 'react';
 
+/**
+ * This function handles the login page. 
+ *
+ * @author Robert Boudewijn
+ * @date 2021/01/20
+ * @param {*} props
+ * @return {*} 
+ */
 function Login(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -10,7 +18,7 @@ function Login(props) {
 
   useEffect(() => {
     /**
-       *  checks if the user is allready logged on.
+       *  Checks if the user is allready logged on.
        *  @author Robert Boudewijn
        *  @date 2020-01-19
        *  @async
@@ -40,13 +48,34 @@ function Login(props) {
 
 
 
+  /**
+   * Handle username change. 
+   *
+   * @author Robert Boudewijn
+   * @date 2021/01/20
+   * @param {*} e
+   */
   function handleUsernameChange(e) {
     setUsername(e.target.value);
   }
+  /**
+   * Handle password change.
+   *
+   * @author Robert Boudewijn
+   * @date 2021/01/20
+   * @param {*} e
+   */
   function handlePasswordChange(e) {
     setPassword(e.target.value);
   }
 
+  /**
+   *This function handles a submit of the form. And makes a fetch request to the server to authenticate.
+   *
+   * @author Robert Boudewijn
+   * @date 2021/01/20
+   * @param {*} e
+   */
   async function handleSubmit(e) {
     e.preventDefault()
 

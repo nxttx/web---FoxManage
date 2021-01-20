@@ -1,6 +1,8 @@
 <?php
 /*
  * Checks if the recieved user exists and if so starts a logged in session.
+ * @author Robert Boudewijn
+ * @date 2020-01-17
  * @param {String} username
  * @param {String} password
  */

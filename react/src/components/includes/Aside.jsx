@@ -2,6 +2,14 @@ import React, { useState, useEffect } from 'react'; //
 // eslint-disable-next-line
 import { BrowserRouter as  Router, Switch, Route, Link } from "react-router-dom";
 
+/**
+ * Returns the aside for all pages.
+ *
+ * @author Robert Boudewijn
+ * @date 2021/01/20
+ * @param {*} props
+ * @return {JSX} jsx
+ */
 function Aside(props) {
     const [usedDataText, setUsedDataText] = useState("Loading...");
     const [usedDataSliderValue, setUsedDataSliderValue] = useState("");
@@ -10,13 +18,11 @@ function Aside(props) {
 
 
     useEffect(()=>{
-        /**
+    /**
      *  This functions gets the used data of the user.
      *  @author Robert Boudewijn
      *  @date 2020-01-17
      *  @async
-     *  @params None
-     *  @return None
      */
     async function getUsedData() {
         let request = await fetch(props.IP + "getUsedData.php",
@@ -63,7 +69,7 @@ function Aside(props) {
      *
      * @author Robert Boudewijn
      * @date 2021/01/19
-     * @return {JSX} 
+     * @return {JSX} jsx
      */
     function dataSlider() {
         if (usedDataSliderValue !== "") {

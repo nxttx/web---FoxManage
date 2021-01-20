@@ -1,10 +1,15 @@
 <?php
-
 header("Access-Control-Allow-Origin: *");
 session_start();
+//for react development
 $_SESSION['user'] = 'RobertBoudewijn';
 $_SESSION['id'] = 1 ;
 $_SESSION['adminRights'] = true;
+/*
+*  Function makes a connection to the database.
+*  @author Robert Boudewijn
+*  @date 2020-01-17
+*/ 
 function connectToDatabase(){
     $upload = false;
     if ($upload) {
@@ -28,6 +33,12 @@ function connectToDatabase(){
     return ($dbh);
 }
 
+/*
+*  formates all data so it doesnt have any special chars 
+*  @author Robert Boudewijn
+*  @date 2020-01-17
+*  @param {String} 
+*/ 
 function test_input($data)
 {
     $data = trim($data);

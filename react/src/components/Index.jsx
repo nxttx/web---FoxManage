@@ -9,6 +9,14 @@ import Domains from './pages/Domains';
 import Mailboxes from './pages/Mailboxes';
 
 
+/**
+ * Main page function for the appplication. Routing is done here.
+ *
+ * @author Robert Boudewijn
+ * @date 2021/01/20
+ * @param {*} props
+ * @return {*} 
+ */
 function Index(props) {
   return (
     <Router>

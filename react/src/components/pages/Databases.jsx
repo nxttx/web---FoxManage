@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function Dashboard(props) {
+function Databases(props) {
     const [databases, setDatabases] = useState("");
 
 
@@ -48,4 +48,4 @@ function Dashboard(props) {
 
     );
 }
-export default Dashboard;
+export default Databases;

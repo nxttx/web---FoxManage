@@ -1,6 +1,8 @@
 <?php
 /*
  * Checks if the user is all ready logged in
+ * @author Robert Boudewijn
+ * @date 2020-01-17
  * @param {String} username
  */
 include_once("dbh/dbh.php");
