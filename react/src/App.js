@@ -7,7 +7,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      IP: "http://localhost/a_routes/",
+      // IP: "http://localhost/a_routes/",
+      IP: "https://klanten.foxels.nl/a_routes/",
       currentScreen: "login",
     }
     this.setCurrentScreen = this.setCurrentScreen.bind(this);

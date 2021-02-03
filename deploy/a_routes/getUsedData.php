@@ -24,18 +24,31 @@ if (isset($_SESSION['user'])) {
         $sth->bindParam(':id', $_SESSION['id']);
         $sth->execute();
         foreach ($sth->fetchAll(PDO::FETCH_ASSOC) as $row) {
-            $f = 'C:/XAMPP/Domains/' . $row['domainName'];
-            $obj = new COM ('scripting.filesystemobject');
-            if (is_object($obj)) {
-                $ref = $obj->getfolder($f);
-                $usedDirSize += $ref->size;
-                $obj = null;
+
+            if (PHP_OS === "Linux") {
+                //linux
+                $f = '/var/www/vhosts/digi-dropping.nl/' . $row['domainName'];;
+                $io = popen('/usr/bin/du -sk ' . $f, 'r');
+                $size = fgets($io, 4096);
+                $size = substr($size, 0, strpos($size, "\t"));
+                pclose($io);
+                $usedDirSize += $size;
             } else {
-                echo 'can not create object';
+                //windows
+                $f = 'C:/XAMPP/Domains/' . $row['domainName'];
+                $obj = new COM ('scripting.filesystemobject');
+                if (is_object($obj)) {
+                    $ref = $obj->getfolder($f);
+                    $usedDirSize += $ref->size;
+                    $obj = null;
+                } else {
+                    echo 'can not create object';
+                }
             }
+
         }
         // make bytes in to mb
-        $usedDirSize =$usedDirSize / 1048576;
+        $usedDirSize = $usedDirSize / 1048576;
         $folderUsedDirSize = round($usedDirSize, 2);
         //get all databases
         $sth = $dbh->prepare("SELECT databaseName from userdatabases where user = :id");
