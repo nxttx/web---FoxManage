@@ -29,8 +29,7 @@ export function getUsedData(){
 export const setDomains = domains => ({ type: SET_DOMAINS, payload: { domains } });
 export function getDomains(){ 
     return async (dispatch, getState) => {
-        //todo
-        let request = await fetch(IP + "getUsedData.php",
+        let request = await fetch(IP + "getUserDomains.php",
             {
                 method: 'GET', // *GET, POST, PUT, DELETE, etc.
                 // mode: 'cors',
@@ -54,8 +53,7 @@ export function getDomains(){
 export const setDatabses = databases => ({ type: SET_DATABASES, payload: { databases } });
 export function getDatabases(){ 
     return async (dispatch, getState) => {
-        //todo
-        let request = await fetch(IP + "getUsedData.php",
+        let request = await fetch(IP + "getUserDatabases.php",
             {
                 method: 'GET', // *GET, POST, PUT, DELETE, etc.
                 // mode: 'cors',

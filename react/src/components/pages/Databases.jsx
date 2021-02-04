@@ -1,45 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from "react-redux";
+import { getDatabases } from "../../redux/actions";
 
 function Databases(props) {
     const [databases, setDatabases] = useState("");
+    console.log(props)
 
 
     useEffect(() => {
-
-    /**
-     *  This function gets all domains of the current user.
-     *  @author Robert Boudewijn
-     *  @date 2020-01-18
-     *  @async
-     *  @params None
-     *  @return None
-     */
-    async function getDatabases() {
-        let request = await fetch(props.IP + "getUserDatabases.php",
-            {
-                method: 'GET', // *GET, POST, PUT, DELETE, etc.
-                // mode: 'cors',
-                // cache: 'no-cache',
-                // credentials: 'same-origin',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                redirect: 'follow',
-                referrerPolicy: 'no-referrer'
-            }
-        );
-        if (request.status === 200) {
-            let response = await request.json();
-
-            setDatabases(response);
-        } else if (request.status === 401) {
-            //nothing user is not logged on so...
-        } else {
-            //error
+        if (props.databases === "no Data") {
+            props.getDatabases()
+        }else{
+        setDatabases(props.databases)
         }
-    }
-        getDatabases();
-    }, [props.IP])
+    }, [props.databases])
 
-    
+
     return (
         <>
             <h1 className="title">Databases</h1>
@@ -48,4 +24,16 @@ function Databases(props) {
 
     );
 }
-export default Databases;
+
+const mapStateToProps = state => {
+    return {
+        databases: state.databases
+    };
+};
+
+export default connect(
+    mapStateToProps,
+    {
+        getDatabases
+    }
+)(Databases);

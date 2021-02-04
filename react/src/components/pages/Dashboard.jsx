@@ -1,109 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
-import { setUsedData } from "../../redux/actions";
+import { getDomains, getDatabases } from "../../redux/actions";
 import Chart from "react-google-charts";
 
 function Dashboard(props) {
-    // const [usedData, setUsedData] = useState("");
     const [chart, setChart] = useState(<></>);
     const [domains , setDomains] = useState("");
     const [databases, setDatabases] = useState("");
-
     useEffect(() => {
 
-    // /**
-    //  *  This functions gets the used data of the user.
-    //  *  @author Robert Boudewijn
-    //  *  @date 2020-01-19
-    //  *  @async
-    //  *  @params None
-    //  *  @return None
-    //  */
-    // async function getUsedData() {
-    //     let request = await fetch(props.IP + "getUsedData.php",
-    //         {
-    //             method: 'GET', // *GET, POST, PUT, DELETE, etc.
-    //             // mode: 'cors',
-    //             // cache: 'no-cache',
-    //             // credentials: 'same-origin',
-    //             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    //             redirect: 'follow',
-    //             referrerPolicy: 'no-referrer'
-    //         }
-    //     );
-    //     if (request.status === 200) {
-    //         let response = await request.json();
-    //         setUsedData(response);
-    //     }
-    // }
-
-    /**
-     *  This function gets all domains of the current user.
-     *  @author Robert Boudewijn
-     *  @date 2020-01-18
-     *  @async
-     *  @params None
-     *  @return None
-     */
-    async function getDomains() {
-        let request = await fetch(props.IP + "getUserDomains.php",
-            {
-                method: 'GET', // *GET, POST, PUT, DELETE, etc.
-                // mode: 'cors',
-                // cache: 'no-cache',
-                // credentials: 'same-origin',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                redirect: 'follow',
-                referrerPolicy: 'no-referrer'
-            }
-        );
-        if (request.status === 200) {
-            let response = await request.json();
-
-            setDomains(response);
-
-
-        } else if (request.status === 401) {
-            //nothing user is not logged on so...
-        } else {
-            //error
-        }
-    }
-
-    /**
-     *  This function gets all domains of the current user.
-     *  @author Robert Boudewijn
-     *  @date 2020-01-18
-     *  @async
-     *  @params None
-     *  @return None
-     */
-    async function getDatabases() {
-        let request = await fetch(props.IP + "getUserDatabases.php",
-            {
-                method: 'GET', // *GET, POST, PUT, DELETE, etc.
-                // mode: 'cors',
-                // cache: 'no-cache',
-                // credentials: 'same-origin',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                redirect: 'follow',
-                referrerPolicy: 'no-referrer'
-            }
-        );
-        if (request.status === 200) {
-            let response = await request.json();
-
-            setDatabases(response);
-        } else if (request.status === 401) {
-            //nothing user is not logged on so...
-        } else {
-            //error
-        }
-    }
-
-        // getUsedData();
-        getDomains();
-        getDatabases();
+        props.getDomains()
+        props.getDatabases();
+        
     }, [props.IP])
 
     useEffect(() => {
@@ -128,6 +36,24 @@ function Dashboard(props) {
         }
     },[props.usedData])
 
+    useEffect(()=>{
+        setDomains(props.domains)
+    },[props.domains])
+    useEffect(() => {
+        if (props.databases === "no Data") {
+            props.getDatabases()
+        }else{
+        setDatabases(props.databases)
+        }// eslint-disable-next-line
+    }, [props.databases])
+
+    useEffect(() => {
+        if (props.databases === "no Data") {
+            props.getDatabases()
+        }else{
+        setDatabases(props.databases)
+        }// eslint-disable-next-line
+    }, [props.databases])
 
     function returnLi(liArray){
         if(typeof liArray === "object"){
@@ -164,11 +90,18 @@ function Dashboard(props) {
     );
 }
 const mapStateToProps = state => {
-    return { usedData: state.usedData };
+    return { 
+        usedData: state.usedData,
+        domains: state.domains,
+        databases: state.databases
+    };
   };
 
   export default connect(
     mapStateToProps,
-    { setUsedData }
+    { 
+        getDomains,
+        getDatabases
+     }
   )(Dashboard);
   

@@ -27,7 +27,6 @@ function Aside(props) {
          *  @async
          */
         async function handleUsedData() {
-            console.log(props.usedData !== "no Data")
             if (props.usedData !== "no Data") {
                 if (props.usedData.status === 200) {
                     setUsedDataText(props.usedData.usedDirSize + " / " + props.usedData.maxDirSize + " MB");
