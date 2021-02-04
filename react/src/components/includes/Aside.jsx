@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'; // 
+import { connect } from "react-redux";
+import { setUsedData, getUsedData } from "../../redux/actions";
 // eslint-disable-next-line
-import { BrowserRouter as  Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
 
 /**
  * Returns the aside for all pages.
@@ -16,53 +19,53 @@ function Aside(props) {
     const [usedDataSliderMax, setUsedDataSliderMax] = useState(100);
     const [usedDataSliderClass, setUsedDataSliderClass] = useState("progress is-primary");
 
+    useEffect(() => {
+        /**
+         *  This functions handles the used data of the user.
+         *  @author Robert Boudewijn
+         *  @date 2020-01-17
+         *  @async
+         */
+        async function handleUsedData() {
+            console.log(props.usedData !== "no Data")
+            if (props.usedData !== "no Data") {
+                if (props.usedData.status === 200) {
+                    setUsedDataText(props.usedData.usedDirSize + " / " + props.usedData.maxDirSize + " MB");
+                    setUsedDataSliderMax(props.usedData.maxDirSize);
+                    setUsedDataSliderValue(props.usedData.usedDirSize);
 
-    useEffect(()=>{
-    /**
-     *  This functions gets the used data of the user.
-     *  @author Robert Boudewijn
-     *  @date 2020-01-17
-     *  @async
-     */
-    async function getUsedData() {
-        let request = await fetch(props.IP + "getUsedData.php",
-            {
-                method: 'GET', // *GET, POST, PUT, DELETE, etc.
-                // mode: 'cors',
-                // cache: 'no-cache',
-                // credentials: 'same-origin',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                redirect: 'follow',
-                referrerPolicy: 'no-referrer'
+                    let percentage = props.usedData.usedDirSize / props.usedData.maxDirSize * 100;
+                    if (percentage > 90) {
+                        setUsedDataSliderClass("progress is-danger");
+
+                    } else if (percentage > 75) {
+                        setUsedDataSliderClass("progress is-warning");
+                    }
+
+                } else if (props.usedData.status === 401) {
+                    //nothing user is not logged on so...
+                } else {
+                    setUsedDataSliderValue(100);
+                    setUsedDataSliderClass("progress");
+                    setUsedDataText("Request error.");
+                }
             }
-        );
-        if (request.status === 200) {
-            let response = await request.json();
-            setUsedDataText(response.usedDirSize + " / " + response.maxDirSize + " MB");
-            setUsedDataSliderMax(response.maxDirSize);
-            setUsedDataSliderValue(response.usedDirSize);
-
-            let percentage = response.usedDirSize / response.maxDirSize * 100;
-            if (percentage > 90) {
-                setUsedDataSliderClass("progress is-danger");
-
-            } else if (percentage > 75) {
-                setUsedDataSliderClass("progress is-warning");
-            }
-
-        } else if (request.status === 401) {
-            //nothing user is not logged on so...
-        } else {
-            setUsedDataSliderValue(100);
-            setUsedDataSliderClass("progress");
-            setUsedDataText("Request error.");
         }
-    }
-        getUsedData();
-    },[props.IP]);
+        handleUsedData();
+    }, [props.usedData]);
 
-
-    
+    /**
+     * This function makes sure to start fetching the used data.
+     *
+     * @author Robert Boudewijn
+     * @date 2021/02/04
+     * @param {}
+     * @return {} 
+     */
+    useEffect(() => {
+        props.getUsedData()
+        // eslint-disable-next-line
+    }, [props.IP])
 
     /**
      *  Returns the correct progress component
@@ -100,4 +103,12 @@ function Aside(props) {
 
     );
 }
-export default Aside;
+
+const mapStateToProps = state => {
+    return { usedData: state.usedData };
+};
+
+export default connect(
+    mapStateToProps,
+    { setUsedData, getUsedData }
+)(Aside);

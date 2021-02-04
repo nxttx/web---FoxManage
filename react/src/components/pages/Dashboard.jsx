@@ -1,40 +1,41 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from "react-redux";
+import { setUsedData } from "../../redux/actions";
 import Chart from "react-google-charts";
 
 function Dashboard(props) {
-    const [usedData, setUsedData] = useState("");
+    // const [usedData, setUsedData] = useState("");
     const [chart, setChart] = useState(<></>);
     const [domains , setDomains] = useState("");
     const [databases, setDatabases] = useState("");
 
-
     useEffect(() => {
 
-    /**
-     *  This functions gets the used data of the user.
-     *  @author Robert Boudewijn
-     *  @date 2020-01-19
-     *  @async
-     *  @params None
-     *  @return None
-     */
-    async function getUsedData() {
-        let request = await fetch(props.IP + "getUsedData.php",
-            {
-                method: 'GET', // *GET, POST, PUT, DELETE, etc.
-                // mode: 'cors',
-                // cache: 'no-cache',
-                // credentials: 'same-origin',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                redirect: 'follow',
-                referrerPolicy: 'no-referrer'
-            }
-        );
-        if (request.status === 200) {
-            let response = await request.json();
-            setUsedData(response);
-        }
-    }
+    // /**
+    //  *  This functions gets the used data of the user.
+    //  *  @author Robert Boudewijn
+    //  *  @date 2020-01-19
+    //  *  @async
+    //  *  @params None
+    //  *  @return None
+    //  */
+    // async function getUsedData() {
+    //     let request = await fetch(props.IP + "getUsedData.php",
+    //         {
+    //             method: 'GET', // *GET, POST, PUT, DELETE, etc.
+    //             // mode: 'cors',
+    //             // cache: 'no-cache',
+    //             // credentials: 'same-origin',
+    //             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    //             redirect: 'follow',
+    //             referrerPolicy: 'no-referrer'
+    //         }
+    //     );
+    //     if (request.status === 200) {
+    //         let response = await request.json();
+    //         setUsedData(response);
+    //     }
+    // }
 
     /**
      *  This function gets all domains of the current user.
@@ -100,13 +101,13 @@ function Dashboard(props) {
         }
     }
 
-        getUsedData();
+        // getUsedData();
         getDomains();
         getDatabases();
     }, [props.IP])
 
     useEffect(() => {
-        if (usedData !== "") {
+        if (props.usedData !== "") {
             setChart(<Chart
                 width={400}
                 height={300}
@@ -114,9 +115,9 @@ function Dashboard(props) {
                 loader={<div>Loading Chart</div>}
                 data={[
                     ["Type", "Amount"],
-                    ["Database", usedData.usedDirSize - usedData.folderUsedDirSize],
-                    ["Storage", usedData.folderUsedDirSize],
-                    ["Free", usedData.maxDirSize - usedData.usedDirSize]
+                    ["Database", props.usedData.usedDirSize - props.usedData.folderUsedDirSize],
+                    ["Storage", props.usedData.folderUsedDirSize],
+                    ["Free", props.usedData.maxDirSize - props.usedData.usedDirSize]
                 ]}
                 options={{
                     title: 'Storage',
@@ -125,7 +126,7 @@ function Dashboard(props) {
                 rootProps={{ 'data-testid': '1' }}
             />)
         }
-    },[usedData])
+    },[props.usedData])
 
 
     function returnLi(liArray){
@@ -162,4 +163,12 @@ function Dashboard(props) {
 
     );
 }
-export default Dashboard;
+const mapStateToProps = state => {
+    return { usedData: state.usedData };
+  };
+
+  export default connect(
+    mapStateToProps,
+    { setUsedData }
+  )(Dashboard);
+  

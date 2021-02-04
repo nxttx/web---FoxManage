@@ -1,4 +1,5 @@
 import React from 'react';
+import {IP} from "./GLOBALVAR";
 import Login from './components/Login';
 import Index from './components/Index';
 
@@ -7,8 +8,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // IP: "http://localhost/a_routes/",
-      IP: "https://klanten.foxels.nl/a_routes/",
+      IP: IP,
       currentScreen: "login",
     }
     this.setCurrentScreen = this.setCurrentScreen.bind(this);
