@@ -4,7 +4,6 @@ import { getDatabases } from "../../redux/actions";
 
 function Databases(props) {
     const [databases, setDatabases] = useState("");
-    console.log(props)
 
 
     useEffect(() => {
@@ -12,7 +11,7 @@ function Databases(props) {
             props.getDatabases()
         }else{
         setDatabases(props.databases)
-        }
+        }// eslint-disable-next-line
     }, [props.databases])
 
 

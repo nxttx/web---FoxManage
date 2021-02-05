@@ -1,4 +1,4 @@
-import { SET_USEDDATA, SET_DOMAINS, SET_DATABASES, SET_MAILBOXES } from "./actionTypes";
+import { SET_USEDDATA, SET_DOMAINS, SET_DATABASES, SET_MAILBOXES, SET_FACTUREN } from "./actionTypes";
 import {IP} from "../GLOBALVAR";
 
 //USED DATA
@@ -93,6 +93,31 @@ export function getMailboxes(){
         let response = await request.json();
         response.status = request.status
         dispatch(({ type: SET_MAILBOXES, payload: { response } }));
+        return response
+        
+        //todo: ERROR HANDL
+    }
+};
+
+//Facturen
+
+export const setFacturen = facturen => ({ type: SET_FACTUREN, payload: { facturen } });
+export function getFacturen(){ 
+    return async (dispatch, getState) => {
+        let request = await fetch(IP + "getfacturen.php",
+            {
+                method: 'GET', // *GET, POST, PUT, DELETE, etc.
+                // mode: 'cors',
+                // cache: 'no-cache',
+                // credentials: 'same-origin',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                redirect: 'follow',
+                referrerPolicy: 'no-referrer'
+            }
+        );
+        let response = await request.json();
+        response.status = request.status
+        dispatch(({ type: SET_FACTUREN, payload: { response } }));
         return response
         
         //todo: ERROR HANDL

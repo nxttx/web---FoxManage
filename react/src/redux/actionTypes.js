@@ -2,3 +2,4 @@ export const SET_USEDDATA = "SET_USEDDATA";
 export const SET_DOMAINS = "SET_DOMAINS";
 export const SET_DATABASES = "SET_DATABASES";
 export const SET_MAILBOXES = "SET_MAILBOXES";
+export const SET_FACTUREN = "SET_FACTUREN";

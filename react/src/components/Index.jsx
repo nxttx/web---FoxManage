@@ -4,6 +4,7 @@ import Header from './includes/Header';
 import Aside from './includes/Aside';
 import Footer from './includes/Footer';
 import Dashboard from './pages/Dashboard';
+import Facturen from './pages/Facturen';
 import Databases from './pages/Databases';
 import Domains from './pages/Domains';
 import Mailboxes from './pages/Mailboxes';
@@ -29,15 +30,18 @@ function Index(props) {
           <div className="column">
             <div className="container CS-has-padding-left-1">
               <Switch>
+                <Route path="/Facturen">
+                  <Facturen />
+                </Route>
                 <Route path="/Domains">
                   <Domains
                     IP={props.IP}
-                    />
+                  />
                 </Route>
                 <Route path="/Databases">
                   <Databases
                     IP={props.IP}
-                    />
+                  />
                 </Route>
                 <Route path="/Mailboxes">
                   <Mailboxes

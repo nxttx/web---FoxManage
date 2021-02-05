@@ -7,13 +7,8 @@ function Dashboard(props) {
     const [chart, setChart] = useState(<></>);
     const [domains , setDomains] = useState("");
     const [databases, setDatabases] = useState("");
-    useEffect(() => {
 
-        props.getDomains()
-        props.getDatabases();
-        
-    }, [props.IP])
-
+    //Set chart
     useEffect(() => {
         if (props.usedData !== "") {
             setChart(<Chart
@@ -36,9 +31,16 @@ function Dashboard(props) {
         }
     },[props.usedData])
 
-    useEffect(()=>{
+    //set domains
+    useEffect(() => {
+        if (props.database === "no Data") {
+            props.getDomains()
+        }else{
         setDomains(props.domains)
-    },[props.domains])
+        }// eslint-disable-next-line
+    }, [props.domains])
+
+    //set databases
     useEffect(() => {
         if (props.databases === "no Data") {
             props.getDatabases()
@@ -47,14 +49,16 @@ function Dashboard(props) {
         }// eslint-disable-next-line
     }, [props.databases])
 
-    useEffect(() => {
-        if (props.databases === "no Data") {
-            props.getDatabases()
-        }else{
-        setDatabases(props.databases)
-        }// eslint-disable-next-line
-    }, [props.databases])
 
+
+    /**
+     * Makes from an array a set of li's 
+     *
+     * @author Robert Boudewijn
+     * @date 2021/02/04
+     * @param {*} liArray
+     * @return {*} jsx 
+     */
     function returnLi(liArray){
         if(typeof liArray === "object"){
             return liArray.map(Element => <li key={Element}>{Element}</li>)
@@ -89,6 +93,7 @@ function Dashboard(props) {
 
     );
 }
+
 const mapStateToProps = state => {
     return { 
         usedData: state.usedData,

@@ -54,7 +54,7 @@ function Header(props) {
           <Link className="navbar-item" to="/">
             Home
           </Link>
-          <a className="navbar-item" href="https://mail.axc.nl/" target="_blank" rel="noreferrer">
+          <a className="navbar-item" href="https://webmail.foxels.nl/" target="_blank" rel="noreferrer">
             Email
           </a>
           <div className="navbar-item has-dropdown is-hoverable">
@@ -72,7 +72,7 @@ function Header(props) {
                 Contact
               </a>
               <hr className="navbar-divider" />
-              <a href="/" className="navbar-item">
+              <a href="Mailto:robert@robertboudewijn.nl?subject=FoxManage_Issue" className="navbar-item">
                 Report an issue
               </a>
             </div>

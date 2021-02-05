@@ -89,6 +89,7 @@ function Aside(props) {
             </p>
             <ul className="menu-list">
                 <li><Link to="/">Dashboard</Link></li>
+                <li><Link to="/Facturen">Facturen</Link></li>
                 <li><Link to="/Domains">Domains</Link></li>
                 <li><Link to="/Databases">Databases</Link></li>
                 <li><Link to="/Mailboxes">MailBoxes</Link></li>
