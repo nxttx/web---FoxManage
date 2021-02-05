@@ -33,7 +33,7 @@ function Dashboard(props) {
 
     //set domains
     useEffect(() => {
-        if (props.database === "no Data") {
+        if (props.domains === "no Data") {
             props.getDomains()
         }else{
         setDomains(props.domains)
