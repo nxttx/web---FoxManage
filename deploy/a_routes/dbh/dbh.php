@@ -18,7 +18,7 @@ function connectToDatabase(){
         $servername = "localhost";
         $username = "root";
         $password = "";
-        $dbname = "reseller";
+        $dbname = "FoxManage";
     }
 
     try {
