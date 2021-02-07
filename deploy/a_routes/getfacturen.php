@@ -12,7 +12,7 @@ if (isset($_SESSION['user'])) {
     try {
         //get all facturen:
         $facturen = array();
-        $sth = $dbh->prepare("SELECT f.id, f.date, f.payed, u.adress, u.number, u.zipcode, u.city, u.country, u.firstname, u.lastname from facturen f JOIN usersadress u on f.user=u.id where f.user = :id ");
+        $sth = $dbh->prepare("SELECT f.id, f.date, f.payed, f.IDEAL, u.adress, u.number, u.zipcode, u.city, u.country, u.firstname, u.lastname from facturen f JOIN usersadress u on f.user=u.id where f.user = :id ");
         $sth->bindParam(':id', $_SESSION['id']);
         $sth->execute();
         foreach ($sth->fetchAll(PDO::FETCH_ASSOC) as $row) {
@@ -25,7 +25,7 @@ if (isset($_SESSION['user'])) {
                 array_push($producten, $product);
             }
             $user = array("firstName" =>$row['firstname'],"lastName"=>$row["lastname"],"adress" => $row['adress'],"number"=>$row["number"], "zipcode" => $row['zipcode'], "city" =>$row["city"], "country"=> $row["country"]);
-            $factuur = array("userinfo" => $user, "id" => $row['id'], "date" => $row["date"], "payed" => $row["payed"], "products" => $producten);
+            $factuur = array("userinfo" => $user, "id" => $row['id'], "date" => $row["date"], "payed" => $row["payed"], "products" => $producten, "IDEAl" =>$row['IDEAL']);
             array_push($facturen, $factuur);
         }
 

@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Gegenereerd op: 05 feb 2021 om 09:44
--- Serverversie: 10.5.8-MariaDB-1:10.5.8+maria~stretch
--- PHP-versie: 7.4.14
+-- Host: 127.0.0.1
+-- Gegenereerd op: 06 feb 2021 om 12:00
+-- Serverversie: 10.4.10-MariaDB
+-- PHP-versie: 7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,10 +19,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `FoxManage`
+-- Database: `foxmanage`
 --
-CREATE DATABASE IF NOT EXISTS `FoxManage` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `FoxManage`;
+CREATE DATABASE IF NOT EXISTS `foxmanage` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `foxmanage`;
 
 -- --------------------------------------------------------
 
@@ -43,13 +44,7 @@ CREATE TABLE `domains` (
 INSERT INTO `domains` (`id`, `user`, `domainName`) VALUES
 (1, 1, 'robertboudewijn.nl'),
 (2, 1, 'foxels.nl'),
-(3, 1, 'markatakas.nl'),
-(4, 1, 'anneverdurmen.nl'),
-(5, 1, 'digi-dropping.nl'),
-(6, 1, 'digi-dropping.online'),
-(7, 1, 'klanten.foxels.nl'),
-(8, 1, 'p002.develop.robertboudewijn.nl'),
-(9, 1, 'p004.develop.robertboudewijn.nl');
+(3, 1, 'markatakas.nl');
 
 -- --------------------------------------------------------
 
@@ -59,18 +54,20 @@ INSERT INTO `domains` (`id`, `user`, `domainName`) VALUES
 
 DROP TABLE IF EXISTS `facturen`;
 CREATE TABLE `facturen` (
-  `id` int(11) NOT NULL,
+  `id` varchar(8) NOT NULL,
   `user` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `payed` tinyint(1) NOT NULL DEFAULT 0
+  `payed` tinyint(1) NOT NULL DEFAULT 0,
+  `IDEAL` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `facturen`
 --
 
-INSERT INTO `facturen` (`id`, `user`, `date`, `payed`) VALUES
-(3, 1, '2021-02-04 20:32:13', 0);
+INSERT INTO `facturen` (`id`, `user`, `date`, `payed`, `IDEAL`) VALUES
+('2021-003', 1, '2021-02-05 15:27:15', 0, ''),
+('2021-004', 1, '2021-02-05 15:27:07', 0, 'https://www.ing.nl/particulier/betaalverzoek/index.html?trxid=Papa5THjUlxGyhpLCVmrwzo9IA0nP75v');
 
 -- --------------------------------------------------------
 
@@ -81,10 +78,10 @@ INSERT INTO `facturen` (`id`, `user`, `date`, `payed`) VALUES
 DROP TABLE IF EXISTS `factuurproducten`;
 CREATE TABLE `factuurproducten` (
   `id` int(11) NOT NULL,
-  `factuurnummer` int(11) NOT NULL,
+  `factuurnummer` varchar(8) NOT NULL,
   `productname` varchar(255) NOT NULL,
   `amount` int(11) NOT NULL DEFAULT 1,
-  `price` int(11) NOT NULL
+  `price` decimal(6,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -92,8 +89,10 @@ CREATE TABLE `factuurproducten` (
 --
 
 INSERT INTO `factuurproducten` (`id`, `factuurnummer`, `productname`, `amount`, `price`) VALUES
-(1, 3, 'FoxMange 3 uur', 1, 50),
-(2, 3, 'Webhosting 1 jaar', 1, 25);
+(1, '2021-003', 'FoxMange 3 uur', 1, '50.25'),
+(2, '2021-003', 'Webhosting 1 jaar', 1, '25.00'),
+(3, '2021-004', 'Domeinnaam Markatakas.nl,  1 jaar', 1, '5.00'),
+(4, '2021-004', 'Webhosting 1 jaar', 1, '64.99');
 
 -- --------------------------------------------------------
 
@@ -114,13 +113,7 @@ CREATE TABLE `userdatabases` (
 
 INSERT INTO `userdatabases` (`id`, `user`, `databaseName`) VALUES
 (1, 1, 'robermi58_website'),
-(2, 1, 'Foxmanage'),
-(3, 1, 'robermi58_coronaWolf'),
-(4, 1, 'robermi58_DigiDropping'),
-(5, 1, 'robermi58_p002'),
-(6, 1, 'robermi58_vbk'),
-(7, 1, 'robermi58_wp668'),
-(8, 1, 'wp_xwxhf');
+(2, 1, 'Foxmanage');
 
 -- --------------------------------------------------------
 
@@ -171,7 +164,7 @@ CREATE TABLE `usersadress` (
 --
 
 INSERT INTO `usersadress` (`id`, `firstname`, `Lastname`, `adress`, `number`, `zipcode`, `city`, `country`) VALUES
-(1, 'Robert', 'Boudewijn', 'Paasberg', '32', '6862CC', 'Oosterbeek', 'Nederland');
+(1, 'Robert', 'Boudewijn', 'Paasberg', '32', '6862 CC', 'Oosterbeek', 'Nederland');
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -228,16 +221,10 @@ ALTER TABLE `domains`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT voor een tabel `facturen`
---
-ALTER TABLE `facturen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
 -- AUTO_INCREMENT voor een tabel `factuurproducten`
 --
 ALTER TABLE `factuurproducten`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT voor een tabel `userdatabases`
