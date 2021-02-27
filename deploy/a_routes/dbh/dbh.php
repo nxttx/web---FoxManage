@@ -2,16 +2,16 @@
 header("Access-Control-Allow-Origin: *");
 session_start();
 //for react development
-//$_SESSION['user'] = 'RobertBoudewijn';
-//$_SESSION['id'] = 1 ;
-//$_SESSION['adminRights'] = true;
+$_SESSION['user'] = 'RobertBoudewijn';
+$_SESSION['id'] = 1;
+$_SESSION['adminRights'] = true;
 /*
 *  Function makes a connection to the database.
 *  @author Robert Boudewijn
 *  @date 2020-01-17
 */ 
 function connectToDatabase(){
-    $upload = true;
+    $upload = false;
     if ($upload) {
         include_once("passwords.php");
     } else {

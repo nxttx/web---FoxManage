@@ -1,13 +1,14 @@
 <?php
+include_once("../dbh/dbh.php");
+$dbh = connectToDatabase();
+
 /*
  *  Checks the used capacity of the user.
  *  @author Robert Boudewijn
  *  @date 2020-01-17
  *  @return {Object} {usedDirSize, maxDirSize, folderUsedDirSize}
+ *  Method GET
  */
-include_once("dbh/dbh.php");
-$dbh = connectToDatabase();
-
 if (isset($_SESSION['user'])) {
     try {
         $maxDirSize = null;
@@ -72,9 +73,10 @@ if (isset($_SESSION['user'])) {
         echo(json_encode($return));
         http_response_code(200); //OK
     } catch (exception $e) {
-        http_response_code(500); //Server error
         echo($e);
+        http_response_code(500); //Server error
     }
 } else {
+    echo("{\"login\":false}");
     http_response_code(401); //not authenticated
 }

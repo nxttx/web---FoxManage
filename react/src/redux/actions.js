@@ -5,7 +5,7 @@ import {IP} from "../GLOBALVAR";
 export const setUsedData = usedData => ({ type: SET_USEDDATA, payload: { usedData } });
 export function getUsedData(){ 
     return async (dispatch, getState) => {
-        let request = await fetch(IP + "getUsedData.php",
+        let request = await fetch(IP + "users/data.php",
             {
                 method: 'GET', // *GET, POST, PUT, DELETE, etc.
                 // mode: 'cors',
@@ -29,7 +29,7 @@ export function getUsedData(){
 export const setDomains = domains => ({ type: SET_DOMAINS, payload: { domains } });
 export function getDomains(){ 
     return async (dispatch, getState) => {
-        let request = await fetch(IP + "getUserDomains.php",
+        let request = await fetch(IP + "users/domains.php",
             {
                 method: 'GET', // *GET, POST, PUT, DELETE, etc.
                 // mode: 'cors',
@@ -53,7 +53,7 @@ export function getDomains(){
 export const setDatabses = databases => ({ type: SET_DATABASES, payload: { databases } });
 export function getDatabases(){ 
     return async (dispatch, getState) => {
-        let request = await fetch(IP + "getUserDatabases.php",
+        let request = await fetch(IP + "users/databases.php",
             {
                 method: 'GET', // *GET, POST, PUT, DELETE, etc.
                 // mode: 'cors',
@@ -104,7 +104,7 @@ export function getMailboxes(){
 export const setFacturen = facturen => ({ type: SET_FACTUREN, payload: { facturen } });
 export function getFacturen(){ 
     return async (dispatch, getState) => {
-        let request = await fetch(IP + "getfacturen.php",
+        let request = await fetch(IP + "users/facturen.php",
             {
                 method: 'GET', // *GET, POST, PUT, DELETE, etc.
                 // mode: 'cors',

@@ -15,7 +15,7 @@ function Mailboxes(props) {
      *  @return None
      */
     async function getDatabases() {
-        let request = await fetch(props.IP + "getUserDatabases.php",
+        let request = await fetch(props.IP + "users/databases.php",
             {
                 method: 'GET', // *GET, POST, PUT, DELETE, etc.
                 // mode: 'cors',

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="cc75d6ed-1683-466e-a80e-b5f64081ff54" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/a_routes/loggedin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a_routes/CheckIfLoggedIn.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/a_routes/check_session.php" beforeDir="false" afterPath="$PROJECT_DIR$/a_routes/tests/check_session.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a_routes/dbh/dbh.php" beforeDir="false" afterPath="$PROJECT_DIR$/a_routes/dbh/dbh.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a_routes/getUsedData.php" beforeDir="false" afterPath="$PROJECT_DIR$/a_routes/users/data.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a_routes/getUserDatabases.php" beforeDir="false" afterPath="$PROJECT_DIR$/a_routes/users/databases.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a_routes/getUserDomains.php" beforeDir="false" afterPath="$PROJECT_DIR$/a_routes/users/domains.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a_routes/getfacturen.php" beforeDir="false" afterPath="$PROJECT_DIR$/a_routes/users/facturen.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a_routes/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/a_routes/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../documentation/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/../documentation/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../old php/css/bulma.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../old php/css/ccss.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../old php/globals/global.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../old php/images/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../old php/includes/aside.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../old php/includes/footer.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../old php/includes/head.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../old php/includes/header.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../old php/index.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../old php/js/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../old php/test.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/../react/.eslintcache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/src/GLOBALVAR.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react/src/GLOBALVAR.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/src/components/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../react/src/components/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/src/components/includes/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../react/src/components/includes/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/src/components/pages/Domains.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../react/src/components/pages/Domains.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/src/components/pages/Mailboxes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../react/src/components/pages/Mailboxes.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../react/src/redux/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../react/src/redux/actions.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1p5AMRT8wWv3jvJmfradwl8XloF" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Rober\Documents\3.0 Algemene documenten\EigenProjecten\web - reseller\deploy\a_routes\tests" />
+      <recent name="C:\Users\Rober\Documents\3.0 Algemene documenten\EigenProjecten\web - reseller\deploy\a_routes\user" />
+      <recent name="C:\Users\Rober\Documents\3.0 Algemene documenten\EigenProjecten\web - reseller\deploy\a_routes\users" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cc75d6ed-1683-466e-a80e-b5f64081ff54" name="Default Changelist" comment="" />
+      <created>1614462528783</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1614462528783</updated>
+      <workItem from="1614462531364" duration="2531000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="361" y="76" key="#Deployment" timestamp="1614462634963">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="361" y="76" key="#Deployment/0.0.1536.834@0.0.1536.834" timestamp="1614462634963" />
+    <state x="604" y="341" key="NewPhpFileDialog" timestamp="1614464340357">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="604" y="341" key="NewPhpFileDialog/0.0.1536.834@0.0.1536.834" timestamp="1614464340357" />
+  </component>
+</project>

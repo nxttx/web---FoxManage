@@ -26,7 +26,7 @@ function Login(props) {
        *  @return None
        */
     async function getLoggedInState() {
-      let request = await fetch(props.IP + "CheckIfLoggedin.php",
+      let request = await fetch(props.IP + "session.php",
         {
           method: 'GET', // *GET, POST, PUT, DELETE, etc.
           // mode: 'cors',
@@ -82,7 +82,7 @@ function Login(props) {
     if (password.length >= 8) {
       setloginbutton("button is-block is-primary is-fullwidth is-loading");
       try {
-        let request = await fetch(props.IP + "login.php", {
+        let request = await fetch(props.IP + "session.php", {
           method: 'POST', // *GET, POST, PUT, DELETE, etc.
           mode: 'cors',
           headers: {

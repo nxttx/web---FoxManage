@@ -18,9 +18,9 @@ function Header(props) {
    *  @async
    */
   async function logOut() {
-    let request = await fetch(props.IP + "logout.php",
+    let request = await fetch(props.IP + "session.php",
       {
-        method: 'GET', // *GET, POST, PUT, DELETE, etc.
+        method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
         // mode: 'cors',
         // cache: 'no-cache',
         // credentials: 'same-origin',

@@ -15,7 +15,7 @@ function Domains(props) {
      *  @return None
      */
     async function getDomains() {
-        let request = await fetch(props.IP + "getUserDomains.php",
+        let request = await fetch(props.IP + "users/domains.php",
             {
                 method: 'GET', // *GET, POST, PUT, DELETE, etc.
                 // mode: 'cors',

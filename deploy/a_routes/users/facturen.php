@@ -1,13 +1,14 @@
 <?php
+include_once("../dbh/dbh.php");
+$dbh = connectToDatabase();
+
 /*
  *  Gets all the domains of the user
  *  @author Robert Boudewijn
  *  @date 2020-01-17
  *  @return {array} domains of user
+ *  Method GET
  */
-include_once("dbh/dbh.php");
-$dbh = connectToDatabase();
-
 if (isset($_SESSION['user'])) {
     try {
         //get all facturen:
@@ -32,9 +33,11 @@ if (isset($_SESSION['user'])) {
         echo(json_encode($facturen));
         http_response_code(200); //OK
     } catch (exception $e) {
-        http_response_code(500); //Server error
         echo($e);
+        http_response_code(500); //Server error
+
     }
 } else {
+    echo("{\"login\":false}");
     http_response_code(401); //not authenticated
 }
