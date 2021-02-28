@@ -12,8 +12,7 @@ describe("Session route test", () => {
     const nodeFetch = require('node-fetch')
     fetchCookies = require('fetch-cookie/node-fetch')(nodeFetch)
     //--Clearing cookies----
-
-    // await new Promise((resolve) => tools.clearDatabase(resolve));
+    
     await Tools.clearDatabase();
 
   });

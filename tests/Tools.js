@@ -21,6 +21,18 @@ const clearDatabase = () => {
         if (err) throw err;
       });
 
+      connection.query("DELETE FROM usersadress", function (err, result) {
+        if (err) throw err;
+      });
+
+      connection.query("DELETE FROM factuurproducten", function (err, result) {
+        if (err) throw err;
+      });
+
+      connection.query("DELETE FROM Facturen", function (err, result) {
+        if (err) throw err;
+      });
+
       connection.query("DELETE FROM users", function (err, result) {
         if (err) throw err;
       });
@@ -46,11 +58,36 @@ const clearDatabase = () => {
           if (err) throw err;
         });
 
-      //userdatabases
+      //userdatabases 
       connection.query(
         "INSERT INTO `userdatabases` (`id`, `user`, `databaseName`) VALUES" +
         "(1, 1, 'Database1'), " +
         "(2, 1, 'Database2');"
+        , function (err, result) {
+          if (err) throw err;
+        });
+
+      //usersadress 
+      connection.query(
+        "INSERT INTO `usersadress` (`id`, `firstname`, `Lastname`, `adress`, `number`, `zipcode`, `city`, `country`) VALUES" +
+        "(1, 'Test', 'Test', 'Wall St', '57', 'NY 10005', 'New York', 'United States of America');"
+        , function (err, result) {
+          if (err) throw err;
+        });
+
+      //facturen
+      connection.query(
+        "INSERT INTO `facturen` (`id`, `user`, `date`, `payed`, `IDEAL`) VALUES" +
+        "('2021-003', 1, '2021-02-05 15:27:15', 0, '');"
+        , function (err, result) {
+          if (err) throw err;
+        });
+
+      //factuurproducten
+      connection.query(
+        "INSERT INTO `factuurproducten` (`id`, `factuurnummer`, `productname`, `amount`, `price`) VALUES" +
+        "(1, '2021-003', 'FoxManage 3 uur', 1, '50.25')," +
+        "(2, '2021-003', 'Webhosting 1 jaar', 1, '25.00');"
         , function (err, result) {
           if (err) throw err;
         });

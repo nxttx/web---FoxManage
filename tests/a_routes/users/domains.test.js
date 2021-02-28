@@ -1,5 +1,5 @@
 const fetch = require("node-fetch");
-let fetchCookies = ()=>{};
+let fetchCookies = () => { };
 const Tools = require('../../Tools');
 let IP = "http://Localhost/a_routes/users/domains.php";
 
@@ -7,13 +7,12 @@ describe("users/domains route test", () => {
   beforeAll(async () => {
   });
 
-  beforeEach(async() => {
+  beforeEach(async () => {
     //--Clearing cookies----
     const nodeFetch = require('node-fetch')
     fetchCookies = require('fetch-cookie/node-fetch')(nodeFetch)
     //--Clearing cookies----
-
-    // await new Promise((resolve) => tools.clearDatabase(resolve));
+    
     await Tools.clearDatabase();
 
   });
@@ -32,19 +31,19 @@ describe("users/domains route test", () => {
         body: "username=Test&password=Test1234",
       })
 
-        const request = await fetchCookies(IP,{
-          method: 'GET',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          redirect: 'follow',
-          referrerPolicy: 'no-referrer'
-        })
-        expect(request.status).toEqual(200);
-        let response = await request.json();
-        expect(response).toEqual(["domain1.org", "domain2.org", "domain3.org"]);
-      });
+      const request = await fetchCookies(IP, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer'
+      })
+      expect(request.status).toEqual(200);
+      let response = await request.json();
+      expect(response).toEqual(["domain1.org", "domain2.org", "domain3.org"]);
+    });
 
     test("Alternative flow ~ not signed in", async () => {
-      const request = await fetch(IP,{
+      const request = await fetch(IP, {
         method: 'GET',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         redirect: 'follow',
@@ -52,7 +51,7 @@ describe("users/domains route test", () => {
       })
       expect(request.status).toEqual(401);
       let response = await request.json();
-      expect(response).toEqual({login: false});
+      expect(response).toEqual({ login: false });
     });
   });
 });
