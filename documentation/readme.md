@@ -3,6 +3,8 @@
 * All functions/methodes/classes will we documented with either PHPDOC or JSDoc.
 #### Variables
 * The user sessions variable is declared as 'user'.
+### UnitTesting
+The websever is unittested with JEST. You can run the unittests with ```npm test``` in the main directory. Make sure that 'deploy\a_routes\dbh\dbh.php  $state' is turned to test.
 ## Webserver requirements
 * Webserver with PDO.
 * MySql database.
