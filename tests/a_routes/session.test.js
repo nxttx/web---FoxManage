@@ -1,17 +1,21 @@
 const fetch = require("node-fetch");
 let fetchCookies = ()=>{};
+const tools = require('../clearDatabase');
 let IP = "http://Localhost/a_routes/session.php";
-
 
 describe("Session route test", () => {
   beforeAll(async () => {
   });
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     //--Clearing cookies----
     const nodeFetch = require('node-fetch')
     fetchCookies = require('fetch-cookie/node-fetch')(nodeFetch)
     //--Clearing cookies----
+
+    // await new Promise((resolve) => tools.clearDatabase(resolve));
+    await tools.clearDatabase();
+
   });
 
   afterEach(async () => {
@@ -32,17 +36,16 @@ describe("Session route test", () => {
     });
   });
   describe("Method: Post", () => {
-    //todo
     test("Happy flow", async () => {
       const request = await fetch(IP,{
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         redirect: 'follow',
         referrerPolicy: 'no-referrer',
-        //Todo: Add test database
         body: "username=Test&password=Test1234", 
       })
       expect(request.status).toEqual(200);
+
     });
     test("Alternative flow ~ Wrong password", async () => {
       const request = await fetch(IP,{
@@ -50,8 +53,7 @@ describe("Session route test", () => {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         redirect: 'follow',
         referrerPolicy: 'no-referrer',
-        //Todo: Add test database
-        body: "username=Test&password=Test1234", 
+        body: "username=Test&password=Test1222", 
       })
       expect(request.status).toEqual(400);
     });
@@ -61,7 +63,6 @@ describe("Session route test", () => {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         redirect: 'follow',
         referrerPolicy: 'no-referrer',
-        //Todo: Add test database
         body: "username=Tes&password=Test1234", 
       })
       expect(request.status).toEqual(400);
@@ -72,7 +73,6 @@ describe("Session route test", () => {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         redirect: 'follow',
         referrerPolicy: 'no-referrer',
-        //Todo: Add test database
         body: "username=Test&password=Test", 
       })
       expect(request.status).toEqual(400);
@@ -83,7 +83,6 @@ describe("Session route test", () => {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         redirect: 'follow',
         referrerPolicy: 'no-referrer',
-        //Todo: Add test database
         body: "password=Test", 
       })
       expect(request.status).toEqual(400);
@@ -96,9 +95,9 @@ describe("Session route test", () => {
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             redirect: 'follow',
             referrerPolicy: 'no-referrer',
-            //Todo: Add test database
             body: "username=Test&password=Test1234", 
           })
+          //sometimes it says the password is to small?
 
         const request = await fetchCookies(IP,{
           method: 'GET',

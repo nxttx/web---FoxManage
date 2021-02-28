@@ -9,9 +9,10 @@ session_start();
 *  @date 2020-01-17
 */ 
 function connectToDatabase(){
-    $state = "online"; // "local", "test", "online"
+    $state = "test"; // "local", "test", "online"
     if ($state == "online") {
         include_once("passwords.php");
+        
     } elseif($state == "local") {
         $servername = "localhost";
         $username = "root"; 
@@ -19,9 +20,10 @@ function connectToDatabase(){
         $dbname = "FoxManage";
 
         //for react development
-        //$_SESSION['user'] = 'RobertBoudewijn';
-        //$_SESSION['id'] = 1;
-        //$_SESSION['adminRights'] = true;
+        $_SESSION['user'] = 'RobertBoudewijn';
+        $_SESSION['id'] = 1;
+        $_SESSION['adminRights'] = true;
+
     }elseif ($state === "test"){
         $servername = "localhost";
         $username = "root";
