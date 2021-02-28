@@ -9,7 +9,7 @@ session_start();
 *  @date 2020-01-17
 */ 
 function connectToDatabase(){
-    $state = "local"; // "local", "test", "online"
+    $state = "online"; // "local", "test", "online"
     if ($state == "online") {
         include_once("passwords.php");
     } elseif($state == "local") {
