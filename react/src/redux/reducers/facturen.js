@@ -1,6 +1,6 @@
 import { SET_FACTUREN } from "../actionTypes";
 
-const initialState = "no Data";
+const initialState = -1;
 
 const facturen = (state = initialState, action) => {
   switch (action.type) {

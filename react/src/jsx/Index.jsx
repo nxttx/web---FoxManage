@@ -1,14 +1,13 @@
-import React from 'react'; //useEffect 
+import React from "react"; //useEffect
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Header from './includes/Header';
-import Aside from './includes/Aside';
-import Footer from './includes/Footer';
-import Dashboard from './pages/Dashboard';
-import Facturen from './pages/Facturen';
-import Databases from './pages/Databases';
-import Domains from './pages/Domains';
-import Mailboxes from './pages/Mailboxes';
-
+import Header from "./includes/Header";
+import Aside from "./includes/Aside";
+import Footer from "./includes/Footer";
+import Dashboard from "./pages/Dashboard";
+import Facturen from "./pages/Facturen";
+import Databases from "./pages/Databases";
+import Domains from "./pages/Domains";
+import Mailboxes from "./pages/Mailboxes";
 
 /**
  * Main page function for the appplication. Routing is done here.
@@ -16,12 +15,12 @@ import Mailboxes from './pages/Mailboxes';
  * @author Robert Boudewijn
  * @date 2021/01/20
  * @param {*} props
- * @return {*} 
+ * @return {*}
  */
 function Index(props) {
   return (
     <Router>
-      <Header IP={props.IP} setCurrentScreen={props.setCurrentScreen} ></Header>
+      <Header IP={props.IP} setCurrentScreen={props.setCurrentScreen}></Header>
       <section>
         <div className="columns">
           <div className="column is-2 has-background-light CS-has-padding-left-2 CS-has-padding-top-2 CS-has-padding-bottom-2">
@@ -34,24 +33,16 @@ function Index(props) {
                   <Facturen />
                 </Route>
                 <Route path="/Domains">
-                  <Domains
-                    IP={props.IP}
-                  />
+                  <Domains IP={props.IP} />
                 </Route>
                 <Route path="/Databases">
-                  <Databases
-                    IP={props.IP}
-                  />
+                  <Databases IP={props.IP} />
                 </Route>
                 <Route path="/Mailboxes">
-                  <Mailboxes
-                    IP={props.IP}
-                  />
+                  <Mailboxes IP={props.IP} />
                 </Route>
                 <Route path="/">
-                  <Dashboard
-                    IP={props.IP}
-                  />
+                  <Dashboard IP={props.IP} />
                 </Route>
               </Switch>
             </div>

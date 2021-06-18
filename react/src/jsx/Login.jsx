@@ -1,42 +1,46 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 /**
- * This function handles the login page. 
+ * This function handles the login page.
  *
  * @author Robert Boudewijn
  * @date 2021/01/20
  * @param {*} props
- * @return {*} 
+ * @return {*}
  */
 function Login(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [loginbutton, setloginbutton] = useState("button is-block is-primary is-fullwidth");
-  const [infoBox, setInfoBox] = useState("Please enter your email and password.");
-  const [infoBoxClassName, setInfoBoxClassName] = useState("title has-text-grey is-5");
+  const [loginbutton, setloginbutton] = useState(
+    "button is-block is-primary is-fullwidth"
+  );
+  const [infoBox, setInfoBox] = useState(
+    "Please enter your email and password."
+  );
+  const [infoBoxClassName, setInfoBoxClassName] = useState(
+    "title has-text-grey is-5"
+  );
   const [passwordClassName, setPasswordClassName] = useState("input");
 
   useEffect(() => {
     /**
-       *  Checks if the user is allready logged on.
-       *  @author Robert Boudewijn
-       *  @date 2020-01-19
-       *  @async
-       *  @params None
-       *  @return None
-       */
+     *  Checks if the user is allready logged on.
+     *  @author Robert Boudewijn
+     *  @date 2020-01-19
+     *  @async
+     *  @params None
+     *  @return None
+     */
     async function getLoggedInState() {
-      let request = await fetch(props.IP + "session.php",
-        {
-          method: 'GET', // *GET, POST, PUT, DELETE, etc.
-          // mode: 'cors',
-          // cache: 'no-cache',
-          // credentials: 'same-origin',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          redirect: 'follow',
-          referrerPolicy: 'no-referrer'
-        }
-      );
+      let request = await fetch(props.IP + "session.php", {
+        method: "GET", // *GET, POST, PUT, DELETE, etc.
+        // mode: 'cors',
+        // cache: 'no-cache',
+        // credentials: 'same-origin',
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+      });
       if (request.status === 200) {
         props.setCurrentScreen("index");
       } else if (request.status === 401) {
@@ -46,10 +50,8 @@ function Login(props) {
     getLoggedInState();
   }, [props]);
 
-
-
   /**
-   * Handle username change. 
+   * Handle username change.
    *
    * @author Robert Boudewijn
    * @date 2021/01/20
@@ -57,6 +59,8 @@ function Login(props) {
    */
   function handleUsernameChange(e) {
     setUsername(e.target.value);
+    setInfoBox("Please enter your email and password.");
+    setInfoBoxClassName("title has-text-grey is-5");
   }
   /**
    * Handle password change.
@@ -67,6 +71,8 @@ function Login(props) {
    */
   function handlePasswordChange(e) {
     setPassword(e.target.value);
+    setInfoBox("Please enter your email and password.");
+    setInfoBoxClassName("title has-text-grey is-5");
   }
 
   /**
@@ -77,21 +83,19 @@ function Login(props) {
    * @param {*} e
    */
   async function handleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
 
     if (password.length >= 8) {
       setloginbutton("button is-block is-primary is-fullwidth is-loading");
       try {
         let request = await fetch(props.IP + "session.php", {
-          method: 'POST', // *GET, POST, PUT, DELETE, etc.
-          mode: 'cors',
+          method: "POST", // *GET, POST, PUT, DELETE, etc.
+          mode: "cors",
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
+            "Content-Type": "application/x-www-form-urlencoded",
           },
           body: "username=" + username + "&password=" + password,
-        }
-        );
-        console.log(request)
+        });
         if (request.status === 200) {
           setloginbutton("button is-block is-success is-fullwidth");
           props.setCurrentScreen("index");
@@ -104,7 +108,7 @@ function Login(props) {
           setloginbutton("button is-block is-danger is-fullwidth");
         }
       } catch (e) {
-        console.log(e)
+        console.log(e);
         setInfoBox("There was an error.");
         setloginbutton("button is-block is-primary is-fullwidth");
       }
@@ -113,7 +117,6 @@ function Login(props) {
       setInfoBoxClassName("title has-text-danger is-5");
       setPasswordClassName("input is-danger");
     }
-
   }
 
   return (
@@ -130,28 +133,49 @@ function Login(props) {
                 <div className={infoBoxClassName}>{infoBox}</div>
                 <form onSubmit={handleSubmit}>
                   <div className="field">
-                    <label className="label has-text-left" htmlFor="username">Username</label>
+                    <label className="label has-text-left" htmlFor="username">
+                      Username
+                    </label>
                     <div className="control has-icons-left">
-                      <input autoFocus className="input" id="username" placeholder="Username" type="text" value={username} onChange={handleUsernameChange} />
+                      <input
+                        autoFocus
+                        className="input"
+                        id="username"
+                        placeholder="Username"
+                        type="text"
+                        value={username}
+                        onChange={handleUsernameChange}
+                      />
                       <span className="icon is-small is-left">
                         <i className="fas fa-user" />
                       </span>
                     </div>
                   </div>
                   <div className="field">
-                    <label className="label has-text-left" htmlFor="password">Password</label>
+                    <label className="label has-text-left" htmlFor="password">
+                      Password
+                    </label>
                     <div className="control has-icons-left">
-                      <input className={passwordClassName} id="password" placeholder="Password" type="password" value={password} onChange={handlePasswordChange} />
+                      <input
+                        className={passwordClassName}
+                        id="password"
+                        placeholder="Password"
+                        type="password"
+                        value={password}
+                        onChange={handlePasswordChange}
+                      />
                       <span className="icon is-small is-left">
                         <i className="fas fa-lock" />
                       </span>
                     </div>
                   </div>
-                  <button id="LoginButton" className={loginbutton} >Login</button>
+                  <button id="LoginButton" className={loginbutton}>
+                    Login
+                  </button>
                 </form>
               </div>
               <p className="has-text-grey">
-                <a href="/" >Sign Up</a> &nbsp;·&nbsp;
+                <a href="/">Sign Up</a> &nbsp;·&nbsp;
                 <a href="/">Forgot Password</a> &nbsp;·&nbsp;
                 <a href="/">Need Help?</a>
               </p>

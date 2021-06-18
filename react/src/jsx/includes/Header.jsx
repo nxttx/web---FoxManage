@@ -1,4 +1,4 @@
-import React, { } from 'react'; //useEffect useState
+import React from "react"; //useEffect useState
 // eslint-disable-next-line
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
@@ -18,32 +18,39 @@ function Header(props) {
    *  @async
    */
   async function logOut() {
-    let request = await fetch(props.IP + "session.php",
-      {
-        method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
-        // mode: 'cors',
-        // cache: 'no-cache',
-        // credentials: 'same-origin',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        redirect: 'follow',
-        referrerPolicy: 'no-referrer'
-      }
-    );
+    let request = await fetch(props.IP + "session.php", {
+      method: "DELETE", // *GET, POST, PUT, DELETE, etc.
+      // mode: 'cors',
+      // cache: 'no-cache',
+      // credentials: 'same-origin',
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      redirect: "follow",
+      referrerPolicy: "no-referrer",
+    });
     if (request.status === 200) {
       props.setCurrentScreen("login");
     } else {
-      alert("Something went wrong. Try again later.")
+      alert("Something went wrong. Try again later.");
     }
   }
 
   return (
-    <nav className="navbar has-background-light" role="navigation" aria-label="main navigation">
+    <nav
+      className="navbar has-background-light"
+      role="navigation"
+      aria-label="main navigation"
+    >
       <div className="navbar-brand">
         <a className="navbar-item" href="https://bulma.io">
           <img src="images/logo.png" width={112} height={28} alt="logo" />
         </a>
         {/*https://bulma.io/images/bulma-logo.png */}
-        <button className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <button
+          className="navbar-burger"
+          aria-label="menu"
+          aria-expanded="false"
+          data-target="navbarBasicExample"
+        >
           <span aria-hidden="true" />
           <span aria-hidden="true" />
           <span aria-hidden="true" />
@@ -54,7 +61,12 @@ function Header(props) {
           <Link className="navbar-item" to="/">
             Home
           </Link>
-          <a className="navbar-item" href="https://webmail.foxels.nl/" target="_blank" rel="noreferrer">
+          <a
+            className="navbar-item"
+            href="https://webmail.foxels.nl/"
+            target="_blank"
+            rel="noreferrer"
+          >
             Email
           </a>
           <div className="navbar-item has-dropdown is-hoverable">
@@ -72,7 +84,10 @@ function Header(props) {
                 Contact
               </a>
               <hr className="navbar-divider" />
-              <a href="Mailto:robert@robertboudewijn.nl?subject=FoxManage_Issue" className="navbar-item">
+              <a
+                href="Mailto:robert@robertboudewijn.nl?subject=FoxManage_Issue"
+                className="navbar-item"
+              >
                 Report an issue
               </a>
             </div>
@@ -81,7 +96,7 @@ function Header(props) {
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="buttons">
-              <button className="button is-primary" onClick={() => logOut()}>
+              <button className="button is-info is-light is-outlined" onClick={() => logOut()}>
                 <strong>Logout</strong>
               </button>
             </div>

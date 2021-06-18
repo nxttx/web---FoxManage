@@ -1,6 +1,6 @@
 import { SET_MAILBOXES } from "../actionTypes";
 
-const initialState = "no Data";
+const initialState = -1;
 
 const mailboxes = (state = initialState, action) => {
   switch (action.type) {

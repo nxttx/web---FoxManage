@@ -79,7 +79,7 @@ export const setMailboxes = mailboxes => ({ type: SET_MAILBOXES, payload: { mail
 export function getMailboxes(){ 
     return async (dispatch, getState) => {
         //todo
-        let request = await fetch(IP + "getUsedData.php",
+        let request = await fetch(IP + "users/mailboxes.php",
             {
                 method: 'GET', // *GET, POST, PUT, DELETE, etc.
                 // mode: 'cors',

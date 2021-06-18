@@ -1,8 +1,7 @@
-import React from 'react';
-import {IP} from "./GLOBALVAR";
-import Login from './components/Login';
-import Index from './components/Index';
-
+import React from "react";
+import { IP } from "./GLOBALVAR";
+import Login from "./jsx/Login";
+import Index from "./jsx/Index";
 
 class App extends React.Component {
   constructor(props) {
@@ -10,32 +9,30 @@ class App extends React.Component {
     this.state = {
       IP: IP,
       currentScreen: "login",
-    }
+    };
     this.setCurrentScreen = this.setCurrentScreen.bind(this);
   }
 
-  setCurrentScreen(A){
-    this.setState({currentScreen: A})
+  setCurrentScreen(A) {
+    this.setState({ currentScreen: A });
   }
-
 
   render() {
     switch (this.state.currentScreen) {
       case "login":
         return (
-          <Login 
+          <Login
             IP={this.state.IP}
-            setCurrentScreen={this.setCurrentScreen}>
-
-          </Login>
+            setCurrentScreen={this.setCurrentScreen}
+          ></Login>
         );
-        
+
       case "index":
-        return(
-        <Index
-          IP={this.state.IP}
-          setCurrentScreen={this.setCurrentScreen}
-        ></Index>
+        return (
+          <Index
+            IP={this.state.IP}
+            setCurrentScreen={this.setCurrentScreen}
+          ></Index>
         );
       default:
         break;

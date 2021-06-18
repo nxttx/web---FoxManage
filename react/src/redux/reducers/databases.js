@@ -1,6 +1,6 @@
 import { SET_DATABASES } from "../actionTypes";
 
-const initialState = "no Data";
+const initialState = -1;
 
 const databases = (state = initialState, action) => {
   switch (action.type) {
