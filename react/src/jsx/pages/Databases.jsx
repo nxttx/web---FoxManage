@@ -88,7 +88,7 @@ function Databases(props) {
             </button>
           </th>
         </tr>
-      ))} </tbody>;
+      ))}</tbody>;
       return (
         <table className="table is-hoverable ">
           {thead}
