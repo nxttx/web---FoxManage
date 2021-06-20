@@ -71,6 +71,26 @@
     padding-left: 6rem;
 }
 
+.CS-has-padding-1{
+    padding: 1rem;
+}
+.CS-has-padding-2{
+    padding: 2rem;
+}
+.CS-has-padding-3{
+    padding: 3rem;
+}
+.CS-has-padding-4{
+    padding: 4rem;
+}
+.CS-has-padding-5{
+    padding: 5rem;
+}
+.CS-has-padding-6{
+    padding: 6rem;
+}
+
+
 .is-clickable {
     cursor: pointer;
 }

@@ -20,14 +20,14 @@ import Mailboxes from "./pages/Mailboxes";
 function Index(props) {
   return (
     <Router>
-      <Header IP={props.IP} setCurrentScreen={props.setCurrentScreen}></Header>
+      <Header IP={props.IP} setCurrentScreen={props.setCurrentScreen}/>
       <section>
         <div className="columns">
-          <div className="column is-2 has-background-light CS-has-padding-left-2 CS-has-padding-top-2 CS-has-padding-bottom-2">
-            <Aside IP={props.IP}></Aside>
+          <div className="column is-2 has-background-light CS-has-padding-2">
+            <Aside IP={props.IP}/>
           </div>
           <div className="column">
-            <div className="container CS-has-padding-left-1">
+            <div className="container CS-has-padding-1">
               <Switch>
                 <Route path="/Facturen">
                   <Facturen />
@@ -49,7 +49,7 @@ function Index(props) {
           </div>
         </div>
       </section>
-      <Footer></Footer>
+      <Footer/>
     </Router>
   );
 }

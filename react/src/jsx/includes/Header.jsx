@@ -41,10 +41,9 @@ function Header(props) {
       aria-label="main navigation"
     >
       <div className="navbar-brand">
-        <a className="navbar-item" href="https://bulma.io">
+        <a className="navbar-item" href="https://klanten.foxels.nl">
           <img src="images/logo.png" width={112} height={28} alt="logo" />
         </a>
-        {/*https://bulma.io/images/bulma-logo.png */}
         <button
           className="navbar-burger"
           aria-label="menu"

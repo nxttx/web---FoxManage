@@ -100,7 +100,7 @@ function Aside(props) {
   }
 
   return (
-    <aside className="menu">
+    <aside className="menu" style={{minHeight : "70VH"}}>
       <p className="menu-label">General</p>
       <ul className="menu-list">
         <li>

@@ -14,6 +14,11 @@ function AddDatabaseModal(props) {
     setNewDatabaseName(e.target.value);
   }
 
+  function cancel() {
+    setNewDatabaseName("");
+    props.setModalActive(false);
+  }
+
   return (
     <div className={props.modalActive ? "modal is-active" : "modal"}>
       <div className="modal-background"></div>
@@ -23,9 +28,7 @@ function AddDatabaseModal(props) {
           <button
             className="delete"
             aria-label="close"
-            onClick={() => {
-              props.setModalActive(false);
-            }}
+            onClick={cancel}
           ></button>
         </header>
         <section className="modal-card-body" id="factuurbody">
@@ -47,7 +50,7 @@ function AddDatabaseModal(props) {
             <div className="buttons">
               <button
                 className="button is-small is-danger is-outlined"
-                onClick={() => props.setModalActive(false)}
+                onClick={cancel}
               >
                 <span className="icon is-small">
                   <i className="fas fa-times" />
