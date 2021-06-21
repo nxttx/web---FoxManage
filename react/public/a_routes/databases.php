@@ -16,7 +16,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
      * @param {String} name
      * Method delete
      */
-    case('DELETE'):
+    case('DELETE')://todo remove from user databases.
         if (isset($_GET['name'])) {
             if(containsSQL($_GET["name"]) || (strpos($_GET["name"], $_SESSION["user"]) === false)){
                 http_response_code(401); //unauthorized
@@ -30,6 +30,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 $mdbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $sql = "DROP DATABASE " . $name;
                 $mdbh->exec($sql);
+
+                $sth = $dbh->prepare("DELETE FROM userdatabases WHERE  user= :user and databasename = :databaseName");
+                $sth->bindParam(':user', $_SESSION['id']);
+                $sth->bindParam(':databaseName', $name);
+                $sth->execute();
             } catch (exception $e) {
                 http_response_code(500); //internal error
                 break;
@@ -94,6 +99,15 @@ switch ($_SERVER['REQUEST_METHOD']) {
     * Method GET
     */
     case("GET"):
+        if (isset($_GET['name'])) {
+            SQLDump();
+
+        } else {
+            http_response_code(400); //Bad Request
+            break;
+        }
+
+
         break;
 
     /*

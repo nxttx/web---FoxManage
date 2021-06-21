@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getDatabases } from "../../redux/actions";
 import AddDatabaseModal from "../components/AddDatabaseModal";
+import {IP} from "../../GLOBALVAR";
 
 function Databases(props) {
   const databases = useSelector((state) => state.databases);
@@ -30,10 +31,22 @@ function Databases(props) {
     );
   }
 
-  function handleDrop() {
-    alert(
-      "We are sorry, but it seems like this feature is not implemented yet."
-    );
+  async function handleDrop(name) {
+    if (window.confirm('Weet je zeker dat je '+name+' wilt verwijderen?')) {
+      let request = await fetch(IP + "databases.php?name=" + name, {
+        method: "delete", // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors',
+        // cache: 'no-cache',
+        // credentials: 'same-origin',
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+      });
+      if (request.status === 200) {
+        alert("Database verwijderd!");
+      }
+      dispatch(getDatabases());
+    }
   }
 
   function renderDataBases() {
@@ -78,7 +91,7 @@ function Databases(props) {
               <th>
                 <button
                   className="button is-small is-danger is-outlined"
-                  onClick={handleDrop}
+                  onClick={()=>handleDrop(db)}
                 >
                   <span className="icon is-small">
                     <i className="fas fa-times" />
@@ -104,6 +117,7 @@ function Databases(props) {
       <AddDatabaseModal
         modalActive={modalActive}
         setModalActive={setModalActive}
+        refreshDatabasesList={()=>dispatch(getDatabases())}
       />
       <h1 className="title">Databases</h1>
       <p>Hier kunt u nieuwe databases maken of bestaande databases beheren.</p>

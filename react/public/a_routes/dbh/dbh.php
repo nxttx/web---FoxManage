@@ -1,5 +1,6 @@
 <?php
 header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET,HEAD,POST,PUT,DELETE");
 session_start();
 
 
@@ -69,6 +70,26 @@ function connectToMasterDatabase(){
     } catch (PDOException $e) {
     }
     return ($dbh);
+}
+
+function SQLDump(){
+    $DBUSER="user";
+    $DBPASSWD="password";
+    $DATABASE="user_db";
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "FoxManage";
+
+    $filename = "backup-" . date("d-m-Y") . ".sql.gz";
+    $mime = "application/x-gzip";
+
+    header( "Content-Type: " . $mime );
+    header( 'Content-Disposition: attachment; filename="' . $filename . '"' );
+
+    $cmd = "mysqldump -u $username --password=$password --host=$servername $dbname | gzip --best";
+
+    passthru( $cmd );
 }
 
 /*

@@ -57,7 +57,7 @@ function AddDatabaseModal(props) {
     }
 
     forbiddenList.forEach(element=>{
-      if(value.includes(element)){
+      if(value.toLowerCase().includes(element)){
         setForbiddenItem(true);
         setsafeBlocked(true);
       }
@@ -83,8 +83,8 @@ function AddDatabaseModal(props) {
       referrerPolicy: "no-referrer",
     });
     if (request.status === 201) {
-      alert("Database toegevoegd!");
       cancel();
+      props.refreshDatabasesList();
     }
   }
 
