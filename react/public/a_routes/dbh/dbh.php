@@ -11,6 +11,7 @@ session_start();
 */ 
 function connectToDatabase(){
     $state = "local"; // "local", "test", "online"
+//    $state = "online";
     if ($state == "online") {
         include_once("passwords.php");
         
@@ -51,6 +52,7 @@ function connectToDatabase(){
 */
 function connectToMasterDatabase(){
     $state = "local"; // "local", "online"
+//    $state = "online";
     if ($state == "online") {
         include_once("passwords.php");
 
@@ -68,6 +70,7 @@ function connectToMasterDatabase(){
             $row = null;
         }
     } catch (PDOException $e) {
+        echo($e);
     }
     return ($dbh);
 }
@@ -76,10 +79,7 @@ function SQLDump(){
     $DBUSER="user";
     $DBPASSWD="password";
     $DATABASE="user_db";
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "FoxManage";
+    include_once("passwords.php");
 
     $filename = "backup-" . date("d-m-Y") . ".sql.gz";
     $mime = "application/x-gzip";
@@ -93,7 +93,7 @@ function SQLDump(){
 }
 
 /*
-*  formates all data so it doesnt have any special chars 
+*  formats all data so it doesnt have any special chars
 *  @author Robert Boudewijn
 *  @date 2020-01-17
 *  @param {String} 
