@@ -15,9 +15,6 @@ function Databases(props) {
   }, [databases]);
 
   function handleNew() {
-    alert(
-      "We are sorry, but it seems like this feature is not implemented yet."
-    );
     setModalActive(true);
   }
 
@@ -51,44 +48,48 @@ function Databases(props) {
           </tr>
         </thead>
       );
-      let tbody = <tbody>{databases.map((db) => (
-        <tr key={db}>
-          <th>{db}</th>
-          <th>
-            <button
-              className="button is-small is-info is-light is-outlined"
-              onClick={handleSQLDump}
-            >
-              <span className="icon is-small">
-                <i className="fas fa-download" />
-              </span>
-              <span>Download</span>
-            </button>
-          </th>
-          <th>
-            <button
-              className="button is-small is-info is-light is-outlined"
-              onClick={handleCopy}
-            >
-              <span className="icon is-small">
-                <i className="fas fa-copy" />
-              </span>
-              <span>Kopieer en hernoem</span>
-            </button>
-          </th>
-          <th>
-            <button
-              className="button is-small is-danger is-outlined"
-              onClick={handleDrop}
-            >
-              <span className="icon is-small">
-                <i className="fas fa-times" />
-              </span>
-              <span>Verwijder</span>
-            </button>
-          </th>
-        </tr>
-      ))}</tbody>;
+      let tbody = (
+        <tbody>
+          {databases.map((db) => (
+            <tr key={db}>
+              <th>{db}</th>
+              <th>
+                <button
+                  className="button is-small is-info is-light is-outlined"
+                  onClick={handleSQLDump}
+                >
+                  <span className="icon is-small">
+                    <i className="fas fa-download" />
+                  </span>
+                  <span>Download</span>
+                </button>
+              </th>
+              <th>
+                <button
+                  className="button is-small is-info is-light is-outlined"
+                  onClick={handleCopy}
+                >
+                  <span className="icon is-small">
+                    <i className="fas fa-copy" />
+                  </span>
+                  <span>Kopieer en hernoem</span>
+                </button>
+              </th>
+              <th>
+                <button
+                  className="button is-small is-danger is-outlined"
+                  onClick={handleDrop}
+                >
+                  <span className="icon is-small">
+                    <i className="fas fa-times" />
+                  </span>
+                  <span>Verwijder</span>
+                </button>
+              </th>
+            </tr>
+          ))}
+        </tbody>
+      );
       return (
         <table className="table is-hoverable ">
           {thead}

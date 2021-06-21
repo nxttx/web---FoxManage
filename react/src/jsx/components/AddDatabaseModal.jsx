@@ -1,7 +1,41 @@
 import React, { useState } from "react";
+import { IP } from "../../GLOBALVAR";
 
 function AddDatabaseModal(props) {
   const [newDatabaseName, setNewDatabaseName] = useState("");
+  const [forbiddenItem, setForbiddenItem] = useState(false);
+  const [safeBlocked, setsafeBlocked] = useState(true);
+  const forbiddenList = [
+    ";",
+    "select",
+    "drop",
+    "alter",
+    "delete",
+    "update",
+    "create",
+    " ",
+  ];
+
+  function forbiddenItemCheck(){
+    if (forbiddenItem) {
+      return (
+          <div className="notification is-warning">
+            <p>
+              De naam van uw nieuwe database mag niet langer dan 50 tekens zijn en mag de volgende karaters of
+              woorden <b>niet</b> bevatten:
+            </p>
+            <ul className="columns is-flex-wrap-wrap">
+              {forbiddenList.map((item) => {
+                if (item === " ") {
+                  return <li className="column is-3" key={"spatie"}>spatie</li>;
+                }
+                return <li className="column is-3" key={item}>"{item}"</li>;
+              })}
+            </ul>
+          </div>
+      );
+    }
+  }
 
   /**
    * Handle database name change.
@@ -11,28 +45,64 @@ function AddDatabaseModal(props) {
    * @param {*} e
    */
   function handleNewDatabaseNameChange(e) {
-    setNewDatabaseName(e.target.value);
+    let value = e.target.value;
+    setNewDatabaseName(value);
+    setForbiddenItem(false);
+
+    if(value.length < 1 || value.length > 50){
+      setsafeBlocked(true);
+      setForbiddenItem(true);
+    }else{
+      setsafeBlocked(false);
+    }
+
+    forbiddenList.forEach(element=>{
+      if(value.includes(element)){
+        setForbiddenItem(true);
+        setsafeBlocked(true);
+      }
+    })
+
   }
 
   function cancel() {
     setNewDatabaseName("");
+    setForbiddenItem(false);
+    setsafeBlocked(true);
     props.setModalActive(false);
+  }
+
+  async function safeRoute() {
+    let request = await fetch(IP + "databases.php?name=" + newDatabaseName, {
+      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      // mode: 'cors',
+      // cache: 'no-cache',
+      // credentials: 'same-origin',
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      redirect: "follow",
+      referrerPolicy: "no-referrer",
+    });
+    if (request.status === 201) {
+      alert("Database toegevoegd!");
+      cancel();
+    }
   }
 
   return (
     <div className={props.modalActive ? "modal is-active" : "modal"}>
-      <div className="modal-background"></div>
+      <div className="modal-background" />
       <div className="modal-card">
         <header className="modal-card-head">
           <p className="modal-card-title">Nieuwe database</p>
-          <button
-            className="delete"
-            aria-label="close"
-            onClick={cancel}
-          ></button>
+          <button className="delete" aria-label="close" onClick={cancel} />
         </header>
-        <section className="modal-card-body" id="factuurbody">
+        <section className="modal-card-body">
           <div className="content">
+            {forbiddenItemCheck()}
+            <div className="field">
+              <label className="label has-text-left" htmlFor="username">
+                Database naam
+              </label>
             <input
               autoFocus
               className="input"
@@ -42,6 +112,7 @@ function AddDatabaseModal(props) {
               value={newDatabaseName}
               onChange={handleNewDatabaseNameChange}
             />
+          </div>
           </div>
         </section>
         <footer className="modal-card-foot columns">
@@ -57,9 +128,13 @@ function AddDatabaseModal(props) {
                 </span>
                 <span>Annuleer</span>
               </button>
-              <button className="button is-small is-success" onClick={() => {}}>
+              <button
+                className="button is-small is-success"
+                onClick={safeRoute}
+                disabled={safeBlocked}
+              >
                 <span className="icon is-small">
-                  <i className="fas fa-plus"></i>
+                  <i className="fas fa-plus" />
                 </span>
                 <span>Nieuwe opslaan</span>
               </button>

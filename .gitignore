@@ -23,3 +23,16 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+react/.idea/dataSources.xml
+react/.idea/deployment.xml
+react/.idea/inspectionProfiles/Project_Default.xml
+react/.idea/modules.xml
+react/.idea/react.iml
+react/.idea/vcs.xml
+react/.idea/webServers.xml
+react/.idea/dataSources/68096563-a9b3-466e-a3e4-f1859a6eb547/storage_v2/_src_/schema/performance_schema.kIw0nw.meta
+react/.idea/workspace.xml
+react/.idea/dataSources/68096563-a9b3-466e-a3e4-f1859a6eb547/storage_v2/_src_/schema/mysql.osA4Bg.meta
+react/.idea/dataSources/68096563-a9b3-466e-a3e4-f1859a6eb547/storage_v2/_src_/schema/information_schema.FNRwLQ.meta
+react/.idea/dataSources/68096563-a9b3-466e-a3e4-f1859a6eb547.xml
+react/.idea/dataSources.local.xml
